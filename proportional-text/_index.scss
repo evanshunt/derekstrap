@@ -1,0 +1,14 @@
+@use '~breakpoint-sass/stylesheets/breakpoint' as *;
+@use '../breakpoints/index' as *;
+@use '../text-sizing/index' as *;
+@use 'mixins' as *;
+
+html {
+    font-size: proportional-text($base-font-size, 320px);
+
+    @each $name, $width in $breakpointList {
+        @include breakpoint($width) {
+            font-size: proportional-text($base-font-size, $width);
+        }
+    }
+}

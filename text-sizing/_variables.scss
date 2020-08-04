@@ -1,0 +1,76 @@
+$base-font-size: 16px !default;
+$base-font-family: "Source Sans Pro", Tacoma, sans-serif !default;
+$base-font-color: #000 !default; //@todo: Use variable
+$base-line-height: 1.6 !default;
+
+$heading-font-family: "Source Sans Pro", Tacoma, sans-serif !default;
+$heading-line-height: 1.2 !default;
+$heading-font-color: $base-font-color !default;
+$heading-margin: 1rem !default; //@todo: use variable
+$heading-margin-top: $heading-margin !default;
+$heading-margin-bottom: $heading-margin !default;
+
+$h1-font-size: 32px !default;
+$h2-font-size: 24px !default;
+$h3-font-size: 20px !default;
+$h4-font-size: 18px !default;
+$h5-font-size: 16px !default;
+$h6-font-size: 15px !default;
+
+$fw-thin: 100 !default;
+$fw-light: 300 !default;
+$fw-regular: 400 !default;
+$fw-medium: 500 !default;
+$fw-semi-bold: 600 !default;
+$fw-bold: 700 !default;
+$fw-extra-bold: 800 !default;
+$fw-black: 900 !default;
+
+$base-sizes: (
+    'large-phone': $base-font-size,
+    'tablet': $base-font-size,
+    'desktop-large': $base-font-size,
+    'desktop-extra-large': $base-font-size
+) !default;
+
+$h1-sizes: (
+    'large-phone': $h1-font-size,
+    'tablet': $h1-font-size,
+    'desktop-large': $h1-font-size,
+    'desktop-extra-large': $h1-font-size
+) !default;
+
+$h2-sizes: (
+    'large-phone': $h2-font-size,
+    'tablet': $h2-font-size,
+    'desktop-large': $h2-font-size,
+    'desktop-extra-large': $h2-font-size
+) !default;
+
+$h3-sizes: (
+    'large-phone': $h3-font-size,
+    'tablet': $h3-font-size,
+    'desktop-large': $h3-font-size,
+    'desktop-extra-large': $h3-font-size
+) !default;
+
+$h4-sizes: (
+    'large-phone': $h4-font-size,
+    'tablet': $h4-font-size,
+    'desktop-large': $h4-font-size,
+    'desktop-extra-large': $h4-font-size
+) !default;
+
+$h5-sizes: (
+    'large-phone': $h5-font-size,
+    'tablet': $h5-font-size,
+    'desktop-large': $h5-font-size,
+    'desktop-extra-large': $h5-font-size
+) !default;
+
+$h6-sizes: (
+    'large-phone': $h6-font-size,
+    'tablet': $h6-font-size,
+    'desktop-large': $h6-font-size,
+    'desktop-extra-large': $h6-font-size
+) !default;

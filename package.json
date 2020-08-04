@@ -1,0 +1,30 @@
+{
+  "name": "derekstrap",
+  "version": "0.0.1",
+  "description": "An SCSS base layout and styles library by Evans Hunt",
+  "main": "index.js",
+  "keywords": [
+    "scss",
+    "derek",
+    "evans",
+    "hunt"
+  ],
+  "author": "Evans Hunt Tech Team (https://www.evanshunt.com)",
+  "license": "ISC",
+  "dependencies": {
+    "breakpoint-sass": "^2.7.1",
+    "sass-rem": "^2.0.1"
+  },
+  "peerDependencies": {
+    "fibers": "^5.0.0",
+    "sass": "^1.26.10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/evanshunt/derekstrap.git"
+  },
+  "bugs": {
+    "url": "https://github.com/evanshunt/derekstrap/issues"
+  },
+  "homepage": "https://github.com/evanshunt/derekstrap#readme"
+}

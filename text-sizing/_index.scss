@@ -1,0 +1,36 @@
+@forward 'variables';
+@use 'mixins' as *;
+
+body {
+    @include base-text();
+}
+
+h1,
+.h1-text {
+    @include h1-text();
+}
+
+h2,
+.h2-text {
+    @include h2-text();
+}
+
+h3,
+.h3-text {
+    @include h3-text();
+}
+
+h4,
+.h4-text {
+    @include h4-text();
+}
+
+h5,
+.h5-text {
+    @include h5-text();
+}
+
+h6,
+.h6-text {
+    @include h6-text();
+}
