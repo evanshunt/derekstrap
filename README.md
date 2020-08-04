@@ -8,7 +8,7 @@ This library uses `@forward` and `@use` keywords only available in [Dart Sass](h
 
 ## Usage
 
-`@import` '~derekstrap/index' to make use of the entire library or pull in individual files to pick and choose the pieces you want.
+`@import` '~@evanshunt/derekstrap/index' to make use of the entire library or pull in individual files to pick and choose the pieces you want.
 
 To override any variables defined in the library simply `@import` your own variables with the same name prior to importing the library.
 

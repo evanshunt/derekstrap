@@ -1,6 +1,6 @@
 {
-  "name": "derekstrap",
-  "version": "0.0.1",
+  "name": "@evanshunt/derekstrap",
+  "version": "0.0.2",
   "description": "An SCSS base layout and styles library by Evans Hunt",
   "main": "index.js",
   "keywords": [
@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/evanshunt/derekstrap.git"
+    "url": "git+https://github.com/evanshunt/derekstrap.git"
   },
   "bugs": {
     "url": "https://github.com/evanshunt/derekstrap/issues"
