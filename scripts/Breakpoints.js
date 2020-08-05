@@ -1,4 +1,4 @@
-import debounce from "./scripts/debounce";
+import debounce from "debounce";
 
 const Breakpoints = {
     breakpoints: {},
