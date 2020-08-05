@@ -2,13 +2,16 @@
   "name": "@evanshunt/derekstrap",
   "version": "0.0.2",
   "description": "An SCSS base layout and styles library by Evans Hunt",
-  "main": "index.js",
+  "main": "dist/main.js",
   "keywords": [
     "scss",
     "derek",
     "evans",
     "hunt"
   ],
+  "scripts": {
+    "build": "webpack --mode production"
+  },
   "author": "Evans Hunt Tech Team (https://www.evanshunt.com)",
   "license": "ISC",
   "dependencies": {
@@ -26,5 +29,12 @@
   "bugs": {
     "url": "https://github.com/evanshunt/derekstrap/issues"
   },
-  "homepage": "https://github.com/evanshunt/derekstrap#readme"
+  "homepage": "https://github.com/evanshunt/derekstrap#readme",
+  "devDependencies": {
+    "@babel/core": "^7.11.1",
+    "@babel/preset-env": "^7.11.0",
+    "babel-loader": "^8.1.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12"
+  }
 }
