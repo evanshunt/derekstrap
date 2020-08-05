@@ -7,6 +7,13 @@ $desktop-extra-large: 1920px !default;
 $breakpointList: (
     'large-phone': $large-phone,
     'tablet': $tablet,
+    'desktop': $desktop,
     'desktop-large': $desktop-large,
     'desktop-extra-large': $desktop-extra-large
 ) !default;
+
+:export {
+    @each $name, $width in $breakpointList {
+        #{$name}: #{$width};
+    }
+}
