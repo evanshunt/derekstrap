@@ -6,7 +6,7 @@
 @mixin heading-style() {
     font-family: $heading-font-family;
     line-height: $heading-line-height;
-    font-weight: $fw-regular;
+    font-weight: $heading-font-weight;
     margin-bottom: $heading-margin-bottom;
     margin-top: $heading-margin-top;
     color: $heading-font-color;
@@ -15,7 +15,7 @@
 @mixin body-style() {
     font-family: $base-font-family;
     line-height: $base-line-height;
-    font-weight: $fw-light;
+    font-weight: $base-font-weight;
     color: $base-font-color;
 }
 
