@@ -4,12 +4,12 @@
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  display: $display;
-  position: $position;
+  display: #{$display};
+  position: #{$position};
 
   @include proportional-box-aspect-ratio($aspect-ratio, $vw);
 }
 
-@mixin proportional-box-aspect-ratio($aspect-ratio, $vw, $offset: 0) {
+@mixin proportional-box-aspect-ratio($aspect-ratio, $vw, $offset: 0px) {
   height: calc(#{1 / $aspect-ratio} * (100vw - 2 * #{$offset}));
 }
