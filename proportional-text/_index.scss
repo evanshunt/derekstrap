@@ -3,6 +3,8 @@
 @use '../text-sizing/index' as *;
 @use 'mixins' as *;
 
+@forward 'mixins';
+
 html {
     font-size: proportional-text($base-font-size, 320px);
 

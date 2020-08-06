@@ -1,5 +1,6 @@
-@forward 'variables';
 @use 'mixins' as *;
+@forward 'mixins';
+@forward 'variables';
 
 body {
     @include base-text();
