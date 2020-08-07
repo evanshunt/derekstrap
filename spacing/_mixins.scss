@@ -41,6 +41,30 @@
     }
 }
 
+@mixin horizontal-spacing($sizes, $side: 'both', $attribute: $horizontal-spacing-attribute) {
+    @each $breakpoint, $size in $sizes {
+        @if $breakpoint == 'base' {
+            @include horizontal-spacer($size, $side, $attribute);
+        } @else {
+            @include breakpoint(map-get($breakpointList, $breakpoint)) {
+                @include horizontal-spacer($size, $side, $attribute);
+            }
+        }
+    }
+}
+
+@mixin vertical-spacing($sizes, $side: 'both', $attribute: $vertical-spacing-attribute) {
+    @each $breakpoint, $size in $sizes {
+        @if $breakpoint == 'base' {
+            @include vertical-spacer($size, $side, $attribute);
+        } @else {
+            @include breakpoint(map-get($breakpointList, $breakpoint)) {
+                @include vertical-spacer($size, $side, $attribute);
+            }
+        }
+    }
+}
+
 @mixin no-horizontal-spacing($side: 'both', $attribute: $horizontal-spacing-attribute) {
     @include horizontal-spacer(0, $side, $attribute);
 
