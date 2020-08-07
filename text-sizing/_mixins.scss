@@ -1,6 +1,7 @@
 @use '~sass-rem/rem' as *;
 @use '~breakpoint-sass/stylesheets/breakpoint' as *;
 
+// @TODO: refactor to make use of a 'base' size
 @mixin responsive-sizing($sizes, $breakpointList) {
     @each $breakpoint, $size in $sizes {
         @include breakpoint(map-get($breakpointList, $breakpoint)) {
