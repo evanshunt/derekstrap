@@ -30,6 +30,7 @@ $h5-font-size: 16px !default;
 $h6-font-size: 15px !default;
 
 $base-sizes: (
+    'base': $base-font-size,
     'large-phone': $base-font-size,
     'tablet': $base-font-size,
     'desktop': $base-font-size,
@@ -38,6 +39,7 @@ $base-sizes: (
 ) !default;
 
 $h1-sizes: (
+    'base': $h1-font-size,
     'large-phone': $h1-font-size,
     'tablet': $h1-font-size,
     'desktop': $h1-font-size,
@@ -46,6 +48,7 @@ $h1-sizes: (
 ) !default;
 
 $h2-sizes: (
+    'base': $h2-font-size,
     'large-phone': $h2-font-size,
     'tablet': $h2-font-size,
     'desktop': $h2-font-size,
@@ -54,6 +57,7 @@ $h2-sizes: (
 ) !default;
 
 $h3-sizes: (
+    'base': $h3-font-size,
     'large-phone': $h3-font-size,
     'tablet': $h3-font-size,
     'desktop': $h3-font-size,
@@ -62,6 +66,7 @@ $h3-sizes: (
 ) !default;
 
 $h4-sizes: (
+    'base': $h4-font-size,
     'large-phone': $h4-font-size,
     'tablet': $h4-font-size,
     'desktop': $h4-font-size,
@@ -70,6 +75,7 @@ $h4-sizes: (
 ) !default;
 
 $h5-sizes: (
+    'base': $h5-font-size,
     'large-phone': $h5-font-size,
     'tablet': $h5-font-size,
     'desktop': $h5-font-size,
@@ -78,6 +84,7 @@ $h5-sizes: (
 ) !default;
 
 $h6-sizes: (
+    'base': $h6-font-size,
     'large-phone': $h6-font-size,
     'tablet': $h6-font-size,
     'desktop': $h6-font-size,

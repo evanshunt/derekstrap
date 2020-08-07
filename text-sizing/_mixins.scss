@@ -1,14 +1,15 @@
 @use '~sass-rem/rem' as *;
 @use '~breakpoint-sass/stylesheets/breakpoint' as *;
+@use '../breakpoints/index' as *;
 
-// @TODO: refactor to make use of a 'base' size
-@mixin responsive-sizing($sizes, $breakpointList) {
+@mixin responsive-sizing($sizes) {
     @each $breakpoint, $size in $sizes {
-        @include breakpoint(map-get($breakpointList, $breakpoint)) {
+        @if $breakpoint == 'base' {
             font-size: rem($size);
+        } @else {
+            @include breakpoint(map-get($breakpointList, $breakpoint)) {
+                font-size: rem($size);
+            }
         }
     }
 }
-
-
-

@@ -25,59 +25,47 @@
 body,
 %base-text {
     @extend %body-style;
-    @include responsive-sizing($base-sizes, $breakpointList);
+    @include responsive-sizing($base-sizes);
 }
 
 h1,
 .h1-text,
 %h1-text {
     @extend %heading-style;
-    @include responsive-sizing($h1-sizes, $breakpointList);
-
-    font-size: rem($h1-font-size);
+    @include responsive-sizing($h1-sizes);
 }
 
 h2,
 .h2-text,
 %h2-text {
     @extend %heading-style;
-    @include responsive-sizing($h2-sizes, $breakpointList);
-
-    font-size: rem($h2-font-size);
+    @include responsive-sizing($h2-sizes);
 }
 
 h3,
 .h3-text,
 %h3-text {
     @extend %heading-style;
-    @include responsive-sizing($h3-sizes, $breakpointList);
-
-    font-size: rem($h3-font-size);
+    @include responsive-sizing($h3-sizes);
 }
 
 h4,
 .h4-text,
 %h4-text {
     @extend %heading-style;
-    @include responsive-sizing($h4-sizes, $breakpointList);
-
-    font-size: rem($h4-font-size);
+    @include responsive-sizing($h4-sizes);
 }
 
 h5,
 .h5-text,
 %h5-text {
     @extend %heading-style;
-    @include responsive-sizing($h5-sizes, $breakpointList);
-
-    font-size: rem($h5-font-size);
+    @include responsive-sizing($h5-sizes);
 }
 
 h6,
 .h6-text,
 %h6-text {
     @extend %heading-style;
-    @include responsive-sizing($h6-sizes, $breakpointList);
-
-    font-size: rem($h6-font-size);
+    @include responsive-sizing($h6-sizes);
 }
