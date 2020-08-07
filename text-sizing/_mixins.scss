@@ -1,25 +1,4 @@
-@use '~sass-rem/rem' as *;
-@use '~breakpoint-sass/stylesheets/breakpoint' as *;
-@use '../breakpoints/index' as *;
-@use 'variables' as *;
-
-@mixin heading-style() {
-    font-family: $heading-font-family;
-    line-height: $heading-line-height;
-    font-weight: $heading-font-weight;
-    margin-bottom: $heading-margin-bottom;
-    margin-top: $heading-margin-top;
-    color: $heading-font-color;
-}
-
-@mixin body-style() {
-    font-family: $base-font-family;
-    line-height: $base-line-height;
-    font-weight: $base-font-weight;
-    color: $base-font-color;
-}
-
-@mixin responsive-sizing($sizes) {
+@mixin responsive-sizing($sizes, $breakpointList) {
     @each $breakpoint, $size in $sizes {
         @include breakpoint(map-get($breakpointList, $breakpoint)) {
             font-size: rem($size);
@@ -27,51 +6,5 @@
     }
 }
 
-@mixin base-text() {
-    @include body-style();
-    @include responsive-sizing($base-sizes);
-}
-
-@mixin h1-text() {
-    @include heading-style();
-    @include responsive-sizing($h1-sizes);
-
-    font-size: rem($h1-font-size);
-}
-
-@mixin h2-text() {
-    @include heading-style();
-    @include responsive-sizing($h2-sizes);
-
-    font-size: rem($h2-font-size);
-}
-
-@mixin h3-text() {
-    @include heading-style();
-    @include responsive-sizing($h3-sizes);
-
-    font-size: rem($h3-font-size);
-}
-
-@mixin h4-text() {
-    @include heading-style();
-    @include responsive-sizing($h4-sizes);
-
-    font-size: rem($h4-font-size);
-}
-
-@mixin h5-text() {
-    @include heading-style();
-    @include responsive-sizing($h5-sizes);
-
-    font-size: rem($h5-font-size);
-}
-
-@mixin h6-text() {
-    @include heading-style();
-    @include responsive-sizing($h6-sizes);
-
-    font-size: rem($h6-font-size);
-}
 
 

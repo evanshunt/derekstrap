@@ -1,38 +1,82 @@
 @forward 'mixins';
 @forward 'variables';
 
+@use '../breakpoints/index' as *;
 @use 'mixins' as *;
+@use 'variables' as *;
 
-body {
-    @include base-text();
+%heading-style {
+    font-family: $heading-font-family;
+    line-height: $heading-line-height;
+    font-weight: $heading-font-weight;
+    margin-bottom: $heading-margin-bottom;
+    margin-top: $heading-margin-top;
+    color: $heading-font-color;
+}
+
+%body-style {
+    font-family: $base-font-family;
+    line-height: $base-line-height;
+    font-weight: $base-font-weight;
+    color: $base-font-color;
+}
+
+body,
+%base-text {
+    @extend %body-style;
+    @include responsive-sizing($base-sizes, $breakpointList);
 }
 
 h1,
-.h1-text {
-    @include h1-text();
+.h1-text,
+%h1-text {
+    @extend %heading-style;
+    @include responsive-sizing($h1-sizes, $breakpointList);
+
+    font-size: rem($h1-font-size);
 }
 
 h2,
-.h2-text {
-    @include h2-text();
+.h2-text,
+%h2-text {
+    @extend %heading-style;
+    @include responsive-sizing($h2-sizes, $breakpointList);
+
+    font-size: rem($h2-font-size);
 }
 
 h3,
-.h3-text {
-    @include h3-text();
+.h3-text,
+%h3-text {
+    @extend %heading-style;
+    @include responsive-sizing($h3-sizes, $breakpointList);
+
+    font-size: rem($h3-font-size);
 }
 
 h4,
-.h4-text {
-    @include h4-text();
+.h4-text,
+%h4-text {
+    @extend %heading-style;
+    @include responsive-sizing($h4-sizes, $breakpointList);
+
+    font-size: rem($h4-font-size);
 }
 
 h5,
-.h5-text {
-    @include h5-text();
+.h5-text,
+%h5-text {
+    @extend %heading-style;
+    @include responsive-sizing($h5-sizes, $breakpointList);
+
+    font-size: rem($h5-font-size);
 }
 
 h6,
-.h6-text {
-    @include h6-text();
+.h6-text,
+%h6-text {
+    @extend %heading-style;
+    @include responsive-sizing($h6-sizes, $breakpointList);
+
+    font-size: rem($h6-font-size);
 }
