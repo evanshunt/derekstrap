@@ -43,7 +43,7 @@
 
 @mixin horizontal-spacing($sizes, $side: 'both', $attribute: $horizontal-spacing-attribute) {
     @each $breakpoint, $size in $sizes {
-        @if $size == 'base' {
+        @if $breakpoint == 'base' {
             @include horizontal-spacer($size, $side, $attribute);
         } @else {
             @include breakpoint(map-get($breakpointList, $breakpoint)) {
@@ -55,7 +55,7 @@
 
 @mixin vertical-spacing($sizes, $side: 'both', $attribute: $vertical-spacing-attribute) {
     @each $breakpoint, $size in $sizes {
-        @if $size == 'base' {
+        @if $breakpoint == 'base' {
             @include vertical-spacer($size, $side, $attribute);
         } @else {
             @include breakpoint(map-get($breakpointList, $breakpoint)) {
