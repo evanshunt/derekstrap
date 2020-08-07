@@ -41,7 +41,7 @@
     }
 }
 
-@mixin horizontal-spacing($sizes, $side: 'both', $attrubute: $horizontal-spacing-attribute) {
+@mixin horizontal-spacing($sizes, $side: 'both', $attribute: $horizontal-spacing-attribute) {
     @each $breakpoint, $size in $sizes {
         @if $size == 'base' {
             @include horizontal-spacer($size, $side, $attribute);
@@ -53,7 +53,7 @@
     }
 }
 
-@mixin vertical-spacing($sizes, $side: 'both', $attrubute: $vertical-spacing-attribute) {
+@mixin vertical-spacing($sizes, $side: 'both', $attribute: $vertical-spacing-attribute) {
     @each $breakpoint, $size in $sizes {
         @if $size == 'base' {
             @include vertical-spacer($size, $side, $attribute);
