@@ -53,7 +53,7 @@ const Breakpoints = {
             window.dispatchEvent(new CustomEvent('breakpointChange', {
                 detail: {
                     breakpoint: newBreakpoint,
-                    breakpoints: breakpoints.current,
+                    breakpoints: Breakpoints.current,
                     lastBreakpoint: oldBreakpoint
                 }
             }));
