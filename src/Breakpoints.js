@@ -2,34 +2,46 @@ import debounce from "./debounce";
 
 const Breakpoints = {
     breakpoints: {},
-    noUnitBreakpoints: {},
+    current: [],
     currentBreakpoint: '',
     init: function (breakpoints) {
         this.breakpoints = breakpoints;
-        this.noUnitBreakpoints = Object.fromEntries(
-            Object.entries(this.breakpoints).map(
-                ([key, value]) => [key, Number(value.replace(/\D/g, ''))]
-            )
-        );
 
         this.currentBreakpoint = this.getCurrent();
+        this.current = this.get();
         window.addEventListener('resize', this.eventEmitter);
     },
+    // returns the single current breakpoint, or null if none has been reached.
     getCurrent: function () {
-        const width = window.innerWidth;
-        const breakpoint = Object.entries(this.noUnitBreakpoints).reduce((accumulator, entry) => {
-            if (accumulator && width < accumulator[1]) {
+        const breakpoint = Object.entries(this.breakpoints).reduce((accumulator, entry) => {
+            if (accumulator && !(window.matchMedia('(min-width:' + accumulator[1] + ')').matches)) {
                 accumulator = null;
             }
-
-            if (width >= entry[1] && accumulator && accumulator[1] < entry[1]) {
+            if (
+                window.matchMedia('(min-width:' + entry[1] + ')').matches
+                && accumulator
+                && Number(accumulator[1].replace(/\D/g, '')) < Number(entry[1].replace(/\D/g, ''))
+            ) {
                 return entry;
             }
 
             return accumulator;
         });
-
         return breakpoint ? breakpoint[0] : null;
+    },
+    // returns an array of applicable breakpoints allowing javascript
+    // written on a mobile first structure
+    get: function () {
+        return Object.entries(this.breakpoints).filter((entry) => {
+            if (window.matchMedia('(min-width:' + entry[1] + ')').matches) {
+                return true;
+            }
+        }).map((entry) => {
+            return entry[0];
+        });
+    },
+    minWidth: function ($breakpoint) {
+        return window.matchMedia('(min-width:' + this.breakpoints[$breakpoint] + ')').matches;
     },
     eventEmitter: debounce(() => {
         const newBreakpoint = Breakpoints.getCurrent();
@@ -41,6 +53,7 @@ const Breakpoints = {
                 }
             }));
             Breakpoints.currentBreakpoint = newBreakpoint;
+            Breakpoints.current = Breakpoints.get();
         }
     }, 50),
 };
