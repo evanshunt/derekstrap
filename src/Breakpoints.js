@@ -46,14 +46,17 @@ const Breakpoints = {
     eventEmitter: debounce(() => {
         const newBreakpoint = Breakpoints.getCurrent();
         if (newBreakpoint !== Breakpoints.currentBreakpoint) {
+            const oldBreakpoint = Breakpoints.currentBreakpoint;
+            Breakpoints.currentBreakpoint = newBreakpoint;
+            Breakpoints.current = Breakpoints.get();
+
             window.dispatchEvent(new CustomEvent('breakpointChange', {
                 detail: {
                     breakpoint: newBreakpoint,
-                    lastBreakpoint: Breakpoints.currentBreakpoint
+                    breakpoints: breakpoints.current,
+                    lastBreakpoint: oldBreakpoint
                 }
             }));
-            Breakpoints.currentBreakpoint = newBreakpoint;
-            Breakpoints.current = Breakpoints.get();
         }
     }, 50),
 };
