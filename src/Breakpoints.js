@@ -47,6 +47,7 @@ const Breakpoints = {
         const newBreakpoint = Breakpoints.getCurrent();
         if (newBreakpoint !== Breakpoints.currentBreakpoint) {
             const oldBreakpoint = Breakpoints.currentBreakpoint;
+            const oldBreakpoints = Breakpoints.current;
             Breakpoints.currentBreakpoint = newBreakpoint;
             Breakpoints.current = Breakpoints.get();
 
@@ -54,7 +55,8 @@ const Breakpoints = {
                 detail: {
                     breakpoint: newBreakpoint,
                     breakpoints: Breakpoints.current,
-                    lastBreakpoint: oldBreakpoint
+                    lastBreakpoint: oldBreakpoint,
+                    lastBreakpoints: oldBreakpoints
                 }
             }));
         }
