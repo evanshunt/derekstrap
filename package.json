@@ -1,6 +1,6 @@
 {
   "name": "@evanshunt/derekstrap",
-  "version": "0.1.10",
+  "version": "0.2.0",
   "description": "A base layout and styles library by Evans Hunt",
   "main": "dist/main.js",
   "sass": "_index.scss",
