@@ -30,22 +30,19 @@
 @mixin proportional-box-responsive($sizes, $aspect-ratio, $vw, $offset) {
     @each $breakpoint, $size in $sizes {
 
+        $bp-ratio: $aspect-ratio;
         @if (meta.type-of($aspect-ratio) == 'map') {
             $bp-ratio: map.get($aspect-ratio, $breakpoint)
-        } @else {
-            $bp-ratio: $aspect-ratio;
-        }
+        } 
 
+        $bp-vw: $vw;
         @if (meta.type-of($vw) == 'map') {
-            $vw: map.get($vw, $breakpoint)
-        } @else {
-            $vw: $vw;
+            $bp-vw: map.get($vw, $breakpoint)
         }
 
+        $bp-offset: $offset;
         @if (meta.type-of($offset) == 'map') {
             $bp-offset: map.get($offset, $breakpoint)
-        } @else {
-            $bp-offset: $offset;
         }
 
         @if $breakpoint == 'base' {
