@@ -23,7 +23,7 @@
 }
 
 @mixin proportional-height($aspect-ratio, $vw, $offset) {
-    height: calc(#{1 / $aspect-ratio} * ($vw - 2 * #{$offset}));
+    height: calc(#{1 / $aspect-ratio} * (#{$vw} - 2 * #{$offset}));
 }
 
 // Only the keys matter in the sizes map. The values aren't touched.
