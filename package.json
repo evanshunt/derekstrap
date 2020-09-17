@@ -1,6 +1,6 @@
 {
   "name": "@evanshunt/derekstrap",
-  "version": "0.1.10",
+  "version": "0.1.11",
   "description": "A base layout and styles library by Evans Hunt",
   "main": "dist/main.js",
   "sass": "_index.scss",
@@ -36,6 +36,7 @@
     "@babel/core": "^7.11.1",
     "@babel/preset-env": "^7.11.0",
     "babel-loader": "^8.1.0",
+    "core-js": "^3.6.5",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   }
