@@ -39,7 +39,7 @@ You can configure a module exactly once. Before using other styles add something
 
 ### JavaScript
 
-Initialization example shown here. See [below](#Details/Examples) for details on specific module use.
+Initialization example shown here. See [below](#Details--Examples) for details on specific module use.
 
 ```
 // This should be the path to your SCSS entry point which pulls in the Derekstrap SCSS.
@@ -55,11 +55,13 @@ Breakpoints.init(breakpointList);
 
 SubModules
 
-* Breakpoints
-* Proportional Box
-* Proportional Text
-* Spacing
-* Text Sizing
+* [Breakpoints](#Breakpoints)
+* [debounce.js](#debounce-js)
+* [Proportional Box](#Proportional-Box)
+* [Proportional Text](#Proportional--Text)
+* [setUserAgent.js](#setUserAgent-js)
+* [Spacing](#Spacing)
+* [Text Sizing](#Text-Sizing)
 
 JS features
 
@@ -125,6 +127,150 @@ After initilization. The following methods can be used.
 
 ##### Events
 
-## Gotchas
+After the breakpoints module is initialized it fires a `breakpointChange` event on the window object whenever the viewport size moves past any one of the breakpoints. The `detail` property of the event contains four values
 
-This library is in active development. Pull in a particular commit or tag, or coordinate with Dave if you'd like to use it in your project as it may be subject to change.
+* `detail.breakpoint`: the largest single breakpoint the current viewport size size has surpassed
+* `detail.breakpoints`: an array of breakpoints that the current viewport size has surpassed
+* `detail.lastBreakpoint`: the largest single breakpoint the previous viewport size size had surpassed
+* `detail.lastBreakpoints`: an array of breakpoints that the previous viewport size had surpassed
+
+This can be used to trigger your own JS code on breakpoint changes. The example below fires whenever the viewport crosses the "desktop" breakpoint, either from smaller than desktop to bigger or visa versa:
+
+```
+import { Breakpoints } from '@evanshunt/derekstrap';
+Breakpoints.init(breakpointList);
+
+window.addEventListener('breakpointChange', (evt) => {
+    if (evt.detail.breakpoints.includes('desktop') !== evt.detail.lastBreakpoints.includes('desktop')) {
+        // do something here
+    }
+});
+```
+
+Note that the event emitter is debounced. It will not fire until 50ms have passed since the last resize event.
+
+### debounce.js
+
+Derekstrap includes a `debounce()` helper function, used by the Breakpoints module. The code was borrowed from here: [https://davidwalsh.name/javascript-debounce-function](https://davidwalsh.name/javascript-debounce-function). Debouncing is a handy way to ensure a function that runs on resize, scroll, mouse movement or any other event which might occur many times in a row only runs after the action stops.
+
+#### Example usage
+
+```
+import { debounce } from '@evanshunt/derekstrap';
+
+var myResizeFunction = debounce(function() {
+	// do something here that you want to happen on 
+    // resize, but not so often that it crashes the browser
+}, 250);
+
+window.addEventListener('resize', myResizeFunction);
+```
+
+See [src/Breakpoints.js](src/Breakpoints.js) for another example.
+
+### Proportional Box
+
+The proportional box module is intended to allow you to define an aspect ratio for an element. Often useful for elements which have a background image. The module consists of 3 mixins, two of which are helper methods for `proportional-box()` which is the one you will most likely use in your project.
+
+The method takes 3 arguments. The `$view-width` and `$offset` arguments are optional and will depend on other styles applied to the element in order to function properly. By default the mixin assumes a full-bleed element. The opional arguments are there to configure an element that is not full bleed.
+
+* `$aspect-ratio`: Width / height, probably best written as an expression which evaluates to a number, e.g. `16 / 9` rather than `1.77777`. (required)
+* `$view-width`: Defaults to `100vw`. This argument should be the proportion of the viewport widht the element takes up, excluding fixed margins. If the element takes up 100% of the viewport except for a 50px margin on each side, the value here should still be `100vw`. Only pass a different value here if the image is not proportional to the entire viewport. If it should be `50vw` wide (excluding fixed margins) then pass `50vw`. (optional)
+* `$offset`: Defaults to `0px`. This is the place to define fixed width margins. The value passed should reflect the margin _on one side_ of the element. It will be multiplied by 2 in the mixin. This logic assumes identical left and right margins. If that is not the case the offset value should be (left margin + right margin) / 2.
+
+The following background image properties are added to the element using this mixin:
+
+```
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+```
+
+#### Example usage
+
+```
+@use '~@evanshunt/derekstrap';
+
+// Gives a full bleed widget element a 3/2 aspect ratio
+.widget {
+    @include derekstrap.proportional-box(3/2);
+    margin: 0;
+    width: 100vw;
+    background-image: url(example.png);
+}
+
+// Gives a small widget that fills 50% of the viewport with a 20px margin on either side a 1/1 apsect ratio.
+.small-widget {
+    @include derekstrap.proportional-box(1/1, 50vw, 20px);
+    margin: 0 20px;
+    width: calc(50vw - 40px);
+    background-image: url(example.png);
+}
+```
+
+### Proportional Text
+
+This module sets the base sizing of text relative to viewport, with resets at each breakpoint defined and configured with the [Breakpoints](#Breakpoints) module. This allows layouts to behave more consistently with fewer odd issues caused by line wrapping. The breakpoint resets ensure the text does not huge on large screens.
+
+In most cases it will be sufficient to import this module in your stylesheets without any additional configuration. It is included by default if you import Derekstrap but to use this module alone you would do the following:
+
+```
+@use '~@evanshunt/derekstrap/proportional-text';
+```
+
+### setUserAgent.js
+
+When Derekstrap is imported and initialized it runs [setUserAgent.js](src/setUserAgent.js) which appends the browser user agent string to a `data-user-agent` attribute `html` element.
+
+```
+import { Derekstrap} from '@evanshunt/derekstrap';
+Derekstrap.init();
+```
+
+This will result in markup like the following:
+
+```
+<html lang="en" data-useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Safari/605.1.15">
+```
+
+### Spacing
+
+The spacing module is a set of mixins for defining the whitespace around a block. It is intended to allow consistency across blocks, and for flexibility allows use of `padding`, `margin` or `left`/`right`/`top`/`bottom` attributes to create the whitespace. By default the mixins will apply to both top and bottom or both left and right, and will use the `padding` attribute, but this can be configured with optional arguments.
+
+To standardize spacing across blocks it will be useful to define your own variable map of spacing using the same breakpoint names as used with the [Breakpoints](#Breakpoints) module.
+
+#### Basic example usage
+
+```
+@use '~@evanshunt/derekstrap';
+
+$regular-margins: (
+    'base': 2rem,
+    'large-phone': 4rem,
+    'desktop': 10vw,
+    'desktop-large': 12vw,
+    'desktop-extra-large': 16vw
+);
+
+$section-spacing: (
+    'base': 2rem,
+    'desktop': 4rem,
+    'desktop-extra-large': 8rem
+);
+
+.content-block {
+    @include derekstrap.horizontal-spacing($regular-margins);
+    @include derekstrap.vertical-spacing($section-spacing);
+}
+```
+
+#### Applying to only one side
+
+Note that when the spacing is applied to only one side the element, the opposite side gets set to zero. It is not possible at this time to use the mixin to set different spacing on either side of the element using the same attribute. Configuring both sides independently will be possible in version 1.0.
+
+```
+.content-block {
+    @include derekstrap.horizontal-spacing($regular-margins, 'left');
+    @include derekstrap.vertical-spacing($section-spacing, 'top');
+}
+```
