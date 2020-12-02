@@ -23,6 +23,16 @@
 }
 
 @mixin proportional-height($aspect-ratio, $vw, $offset) {
+    @if (meta.type-of($aspect-ratio) == 'null') {
+        @error "$aspect-ratio undefined. Ensure all maps passed as arguments contain the same breakpoints.";
+    }
+    @if (meta.type-of($vw) == 'null') {
+        @error "$vw undefined. Ensure all maps passed as arguments contain the same breakpoints.";
+    }
+    @if (meta.type-of($offset) == 'null') {
+        @error "$offset undefined. Ensure all maps passed as arguments contain the same breakpoints.";
+    }
+
     height: calc(#{1 / $aspect-ratio} * (#{$vw} - 2 * #{$offset}));
 }
 

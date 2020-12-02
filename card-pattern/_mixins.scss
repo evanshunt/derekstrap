@@ -1,0 +1,66 @@
+@use 'sass:meta';
+@use 'sass:map';
+@use '~breakpoint-sass/stylesheets/breakpoint' as *;
+@use '../breakpoints/index' as *;
+
+@mixin card-pattern($child-selector, $columns, $gutter: 0, $row-space: 0) {
+    @if (meta.type-of($columns) == 'map') {
+        @include card-pattern-responsive($columns, $child-selector, $columns, $gutter, $row-space);
+    } @else if (meta.type-of($gutter) == 'map') {
+        @include card-pattern-responsive($gutter, $child-selector, $columns, $gutter, $row-space);
+    } @else if (meta.type-of($row-space) == 'map') {
+        @include card-pattern-responsive($row-space, $child-selector, $columns, $gutter, $row-space);
+    } @else {
+        @include card-layout($child-selector, $columns, $gutter, $row-space)
+    }
+}
+
+@mixin card-pattern-responsive($sizes, $child-selector, $columns, $gutter, $row-space) {
+    @each $breakpoint, $size in $sizes {
+        $bp-columns: $columns;
+        @if (meta.type-of($columns) == 'map') {
+            $bp-columns: map.get($columns, $breakpoint)
+        }
+
+        $bp-gutter: $gutter;
+        @if (meta.type-of($gutter) == 'map') {
+            $bp-gutter: map.get($gutter, $breakpoint)
+        }
+
+        $bp-row-space: $row-space;
+        @if (meta.type-of($row-space) == 'map') {
+            $bp-row-space: map.get($row-space, $breakpoint)$child-selector,
+        }
+
+        @if $breakpoint == 'base' {
+            @include card-layout($child-selector, $bp-columns, $bp-gutter, $bp-row-space);
+        } @else {
+            @include breakpoint(map-get($breakpointList, $breakpoint)) {
+                @include card-layout($child-selector, $bp-columns, $bp-gutter, $bp-row-space);
+            }
+        }
+    }
+}
+
+@mixin card-layout($child-selector, $columns, $gutter, $row-space) {
+    @if (meta.type-of($columns) == 'null') {
+        @error "$columns undefined. Ensure all maps passed as arguments contain the same breakpoints.";
+    }
+    @if (meta.type-of($gutter) == 'null') {
+        @error "$gutter undefined. Ensure all maps passed as arguments contain the same breakpoints.";
+    }
+    @if (meta.type-of($row-space) == 'null') {
+        @error "$row-space undefined. Ensure all maps passed as arguments contain the same breakpoints.";
+    }
+
+    width: calc(100% + #{$gutter}); // possibly unneccessary
+    padding: 0;
+    margin: (-1 * $row-space / 2) (-1 * $gutter / 2);
+    display: flex;
+    flex-flow: row wrap;
+
+    #{$child-selector} {
+        margin: ($row-space / 2) ($gutter / 2);
+        width: calc(100% / #{$columns} - #{$gutter});
+    }
+}

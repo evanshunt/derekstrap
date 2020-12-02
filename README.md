@@ -17,6 +17,15 @@ Resources:
 yarn add @evanshunt/derekstrap;
 ```
 
+# Development
+
+If making any javascript changes, a `yarn build` needs to be run before commit. To install the included pre-commit hook, run the following from the project root:
+
+```
+cp pre-commit.sh .git/hooks/pre-commit
+chmod +x .git/hooks/pre-commit
+```
+
 ## Usage
 
 ### With @import
@@ -55,13 +64,14 @@ Breakpoints.init(breakpointList);
 
 SubModules
 
-* [Breakpoints](#Breakpoints)
+* [Breakpoints](#breakpoints)
 * [debounce.js](#debounce-js)
-* [Proportional Box](#Proportional-Box)
-* [Proportional Text](#Proportional--Text)
-* [setUserAgent.js](#setUserAgent-js)
-* [Spacing](#Spacing)
-* [Text Sizing](#Text-Sizing)
+* [Proportional Box](#proportional-box)
+* [Proportional Text](#proportional-text)
+* [setUserAgent.js](#setuseragent-js)
+* [Spacing](#spacing)
+* [Text Sizing](#text-sizing)
+* [Card Pattern](#card-pattern)
 
 JS features
 
@@ -172,11 +182,12 @@ See [src/Breakpoints.js](src/Breakpoints.js) for another example.
 
 The proportional box module is intended to allow you to define an aspect ratio for an element. Often useful for elements which have a background image. The module consists of 3 mixins, two of which are helper methods for `proportional-box()` which is the one you will most likely use in your project.
 
-The method takes 3 arguments. The `$view-width` and `$offset` arguments are optional and will depend on other styles applied to the element in order to function properly. By default the mixin assumes a full-bleed element. The opional arguments are there to configure an element that is not full bleed.
+The method takes 3 arguments. All arguments except `$aspect-ratio` are optional and will depend on other styles applied to the element in order to function properly. By default the mixin assumes a full-bleed element. The opional arguments are there to configure an element that is not full bleed.
+
+All arguments will accept a single value or a breakpoint map. If passing a breakpoint map to more than one argument ensure all breakpoint maps include the exact same breakpoints.
 
 * `$aspect-ratio`: Width / height, probably best written as an expression which evaluates to a number, e.g. `16 / 9` rather than `1.77777`. (required)
-* `$view-width`: Defaults to `100vw`. This argument should be the proportion of the viewport widht the element takes up, excluding fixed margins. If the element takes up 100% of the viewport except for a 50px margin on each side, the value here should still be `100vw`. Only pass a different value here if the image is not proportional to the entire viewport. If it should be `50vw` wide (excluding fixed margins) then pass `50vw`. (optional)
-* `$offset`: Defaults to `0px`. This is the place to define fixed width margins. The value passed should reflect the margin _on one side_ of the element. It will be multiplied by 2 in the mixin. This logic assumes identical left and right margins. If that is not the case the offset value should be (left margin + right margin) / 2.
+* `$view-width`: Defaults to `100vw`. This argument should be the proportion of the viewport widht the element (or it's parent) takes up, excluding fixed margins. If the element takes up 100% of the viewport except for a 50px margin on each side, the value here should still be `100vw`. Only pass a different value here if the image is not proportional to the entire viewport. If it should be `50vw` wide (excluding fixed margins) then pass `50vw`. (optional)
 
 The following background image properties are added to the element using this mixin:
 
@@ -186,6 +197,7 @@ background-repeat: no-repeat;
 background-position: center;
 ```
 
+<!-- @TODO: add multi-breakpoint examples -->
 #### Example usage
 
 ```
@@ -274,3 +286,44 @@ Note that when the spacing is applied to only one side the element, the opposite
     @include derekstrap.vertical-spacing($section-spacing, 'top');
 }
 ```
+
+### Card Pattern
+
+The card pattern module includes a mixin to quickly generate a common card layout pattern using flexbox. It sets the size and margins of both parent and child elements and allows passing breakpoint maps for arguments to create a responsive layout. If you pass more than one breakpoint map as an argument, ensure they contain the exact same breakpoints and that all included breakpoints have been configured in the $breakpointList variable.
+
+### Example Usage 
+
+```
+@use '~@evanshunt/derekstrap';
+
+// This will create a 4 column layout with a 2rem gutter and 3rem space between rows
+.parent-element {
+    @include derekstrap.card-pattern('.child-selector', 4, 2rem, 3rem);
+}
+
+// This will create a layout with a varying number of columns depending on breakpoint
+.parent-element {
+    @include derekstrap.card-pattern('.child-selector', (
+        'base': 1,
+        'tablet': 2,
+        'desktop': 3
+    ), 2rem, 3rem);
+}
+
+// This will create a layout with varying columns and gutter size
+.parent-element {
+    @include derekstrap.card-pattern(
+        '.child-selector',
+        (
+            'base': 1,
+            'tablet': 2,
+            'desktop': 3
+        ),
+        (
+            'base': 2rem,
+            'tablet': 1rem,
+            'desktop': 0.5rem
+        ),
+        3rem
+    );
+}

@@ -1,5 +1,7 @@
+// The order is importent here to avoid errors on compile
 @forward 'breakpoints/index';
 @forward 'text-sizing/index';
+@forward 'proportional-box/index';
 @forward 'proportional-text/index';
 @forward 'spacing/index';
-@forward 'proportional-box/index';
+@forward 'card-pattern/index';
