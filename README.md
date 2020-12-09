@@ -68,7 +68,7 @@ SubModules
 * [debounce.js](#debounce-js)
 * [Proportional Box](#proportional-box)
 * [Proportional Text](#proportional-text)
-* [setUserAgent.js](#setuseragent-js)
+* [setUserAgent.js](#setuseragentjs)
 * [Spacing](#spacing)
 * [Text Sizing](#text-sizing)
 * [Card Pattern](#card-pattern)
