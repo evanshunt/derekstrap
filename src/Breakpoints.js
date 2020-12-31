@@ -40,8 +40,8 @@ const Breakpoints = {
             return entry[0];
         });
     },
-    minWidth: function ($breakpoint) {
-        return window.matchMedia('(min-width:' + this.breakpoints[$breakpoint] + ')').matches;
+    minWidth: function (breakpoint) {
+        return window.matchMedia('(min-width:' + this.breakpoints[breakpoint] + ')').matches;
     },
     eventEmitter: debounce(() => {
         const newBreakpoint = Breakpoints.getCurrent();
@@ -61,6 +61,27 @@ const Breakpoints = {
             }));
         }
     }, 50),
+    onBreakpointCross: function(breakpoint, callback) {
+        window.addEventListener('breakpointChange', (evt) => {
+            if (evt.detail.breakpoints.includes(breakpoint) !== evt.detail.lastBreakpoints.includes(breakpoint)) {
+                callback();
+            }
+        });
+    },
+    onBreakpointUp: function (breakpoint, callback) {
+        window.addEventListener('breakpointChange', (evt) => {
+            if (evt.detail.breakpoints.includes(breakpoint) && !evt.detail.lastBreakpoints.includes(breakpoint)) {
+                callback();
+            }
+        });
+    },
+    onBreakpointDown: function (breakpoint, callback) {
+        window.addEventListener('breakpointChange', (evt) => {
+            if (!evt.detail.breakpoints.includes(breakpoint) && evt.detail.lastBreakpoints.includes(breakpoint)) {
+                callback();
+            }
+        });
+    },
 };
 
 export default Breakpoints;

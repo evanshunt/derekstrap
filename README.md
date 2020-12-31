@@ -65,13 +65,13 @@ Breakpoints.init(breakpointList);
 SubModules
 
 * [Breakpoints](#breakpoints)
+* [Card Pattern](#card-pattern)
 * [debounce.js](#debounce-js)
 * [Proportional Box](#proportional-box)
 * [Proportional Text](#proportional-text)
 * [setUserAgent.js](#setuseragent-js)
 * [Spacing](#spacing)
 * [Text Sizing](#text-sizing)
-* [Card Pattern](#card-pattern)
 
 JS features
 
@@ -133,7 +133,10 @@ After initilization. The following methods can be used.
 
 * `Breakpoints.get()`: returns an array of breakpoints that the current viewport size has surpassed.
 * `Breakpoints.getCurrent()`: returns the largest single breakpoint that the current viewport size has surpassed.
-* `minWidth($breakpointName)`: when passed a string value corresponding to a breakpoint name returns a boolean indicating whether the current viewport size has surpassed the given breakpoint.
+* `Breakpoints.minWidth(breakpointName)`: when passed a string value corresponding to a breakpoint name returns a boolean indicating whether the current viewport size has surpassed the given breakpoint.
+* `Breakpoints.onBreakpointCross(breakpointName, callback)`: On crossing the breakpoint corresponding to `breakpointName`, either growing beyond it, or shrinking below it a function passed as a callback is called.
+* `Breakpoints.onBreakpointUp(breakpointName, callback)`: Similar to `onBreakpointCross()` but only fires the callback when viewport has grown from below breakpoint to above it
+* `Breakpoints.onBreakpointDown(breakpointName, callback)`: Similar to `onBreakpointCross()` but only fires the callback when viewport has shrunk from above breakpoint to below it
 
 ##### Events
 
@@ -158,6 +161,48 @@ window.addEventListener('breakpointChange', (evt) => {
 ```
 
 Note that the event emitter is debounced. It will not fire until 50ms have passed since the last resize event.
+
+### Card Pattern
+
+The card pattern module includes a mixin to quickly generate a common card layout pattern using flexbox. It sets the size and margins of both parent and child elements and allows passing breakpoint maps for arguments to create a responsive layout. If you pass more than one breakpoint map as an argument, ensure they contain the exact same breakpoints and that all included breakpoints have been configured in the $breakpointList variable.
+
+### Example Usage 
+
+```
+@use '~@evanshunt/derekstrap';
+
+// This will create a 4 column layout with a 2rem gutter and 3rem space between rows
+.parent-element {
+    @include derekstrap.card-pattern('.child-selector', 4, 2rem, 3rem);
+}
+
+// This will create a layout with a varying number of columns depending on breakpoint
+.parent-element {
+    @include derekstrap.card-pattern('.child-selector', (
+        'base': 1,
+        'tablet': 2,
+        'desktop': 3
+    ), 2rem, 3rem);
+}
+
+// This will create a layout with varying columns and gutter size
+.parent-element {
+    @include derekstrap.card-pattern(
+        '.child-selector',
+        (
+            'base': 1,
+            'tablet': 2,
+            'desktop': 3
+        ),
+        (
+            'base': 2rem,
+            'tablet': 1rem,
+            'desktop': 0.5rem
+        ),
+        3rem
+    );
+}
+```
 
 ### debounce.js
 
@@ -288,44 +333,3 @@ Spacing can be applied to a single side of the element by passing the side as th
     @include derekstrap.vertical-spacing($section-spacing, 'top-only');
 }
 ```
-
-### Card Pattern
-
-The card pattern module includes a mixin to quickly generate a common card layout pattern using flexbox. It sets the size and margins of both parent and child elements and allows passing breakpoint maps for arguments to create a responsive layout. If you pass more than one breakpoint map as an argument, ensure they contain the exact same breakpoints and that all included breakpoints have been configured in the $breakpointList variable.
-
-### Example Usage 
-
-```
-@use '~@evanshunt/derekstrap';
-
-// This will create a 4 column layout with a 2rem gutter and 3rem space between rows
-.parent-element {
-    @include derekstrap.card-pattern('.child-selector', 4, 2rem, 3rem);
-}
-
-// This will create a layout with a varying number of columns depending on breakpoint
-.parent-element {
-    @include derekstrap.card-pattern('.child-selector', (
-        'base': 1,
-        'tablet': 2,
-        'desktop': 3
-    ), 2rem, 3rem);
-}
-
-// This will create a layout with varying columns and gutter size
-.parent-element {
-    @include derekstrap.card-pattern(
-        '.child-selector',
-        (
-            'base': 1,
-            'tablet': 2,
-            'desktop': 3
-        ),
-        (
-            'base': 2rem,
-            'tablet': 1rem,
-            'desktop': 0.5rem
-        ),
-        3rem
-    );
-}
