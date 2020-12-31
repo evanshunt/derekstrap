@@ -1,6 +1,18 @@
 @use '~breakpoint-sass/stylesheets/breakpoint' as *;
 @use '../breakpoints/index' as *;
 @use 'variables' as *;
+@use 'sass:string';
+
+/// Applies horizontal whitespace
+/// 
+/// @param {CSS <length>} $spacing
+///     The horizontal whitespace on either side of the element
+/// @param {string: 'both', 'left', 'left-only', 'right', 'right-only'} $side ['both']
+///     The side to apply the spacing to. 'left' or 'right' zero out the opposite side.
+///     'left-only', and 'right-only' do not zero out the opposite side
+/// @param {string: 'margin', 'padding' or ''} $attribute [$horizontal-spacing-attribute]
+///     The type of spacing to use. If a blank string is passed the 'left' or 'right'
+///     positional attributes will be used.
 
 @mixin horizontal-spacer($spacing, $side: 'both', $attribute: $horizontal-spacing-attribute) {
     // allows setting left and right position attributes
@@ -10,17 +22,28 @@
 
     // just left when left, just right when right
     // otherwise both
-    @if $side != 'left' {
+    @if not string.index($side, 'left') {
         #{$attribute}right: $spacing;
-    } @else {
+    } @else if $side != 'left-only' {
         #{$attribute}right: 0;
     }
-    @if $side != 'right' {
+    @if not string.index($side, 'right') {
         #{$attribute}left: $spacing;
-    } @else {
+    } @else if $side != 'right-only' {
         #{$attribute}left: 0;
     }
 }
+
+/// Applies vertical whitespace
+/// 
+/// @param {CSS <length>} $spacing
+///     The vertical whitespace on either side of the element
+/// @param {string: 'both', 'top', 'top-only', 'bottom', 'bottom-only'} $side ['both']
+///     The side to apply the spacing to. 'top' or 'bottom' zero out the opposite side.
+///     'top-only', and 'bottom-only' do not zero out the opposite side
+/// @param {string: 'margin', 'padding' or ''} $attribute [$vertical-spacing-attribute]
+///     The type of spacing to use. If a blank string is passed the 'top' or 'bottom'
+///     positional attributes will be used.
 
 @mixin vertical-spacer($spacing, $side: 'both', $attribute: $vertical-spacing-attribute) {
     // allows setting top and bottom position attributes
@@ -29,14 +52,14 @@
     }
     // just top when top, just bottom when bottom
     // otherwise both
-    @if $side != 'top' {
+    @if not string.index($side, 'top') {
         #{$attribute}bottom: $spacing;
-    } @else {
+    } @else if $side != 'top-only' {
         #{$attribute}bottom: 0;
     }
-    @if $side != 'bottom' {
+    @if not string.index($side, 'bottom') {
         #{$attribute}top: $spacing;
-    } @else {
+    } @else if $side != 'bottom-only' {
         #{$attribute}top: 0;
     }
 }
