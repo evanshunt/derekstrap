@@ -1,9 +1,9 @@
-@forward 'mixins';
+@forward 'functions';
 
 @use '~breakpoint-sass/stylesheets/breakpoint' as *;
 @use '../breakpoints/index' as *;
 @use '../text-sizing/index' as *;
-@use 'mixins' as *;
+@use 'functions' as *;
 
 html {
     font-size: proportional-text($base-font-size, 320px);

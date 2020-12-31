@@ -6,23 +6,39 @@
 // For each argument either a single value, or a breakpoint map can be passed
 // If a breakpoint map is passed for more than one arugment, each must include
 // all of the same breakpoints
+/// 
+/// @param {number or map} $aspect-ratio
+///     Aspect ratio w/h or breakpoint map of aspect ratios 
+/// @param {CSS <length> or map} $vw [100vw]
+///     Width of container, including whitespace 
+///     Length type is intended to be a vw, use of other units may have unexpected results
+/// @param {CSS <length> or map} $offset [0px] 
+///     Size of whitespace on one size of proportionally sized element
+///     If sides are uneven, this should be the average of the two
+
 @mixin proportional-box($aspect-ratio, $vw: 100vw, $offset: 0px) {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 
     @if (meta.type-of($aspect-ratio) == 'map') {
-        @include proportional-box-responsive($aspect-ratio, $aspect-ratio, $vw, $offset);
+        @include _proportional-box-responsive($aspect-ratio, $aspect-ratio, $vw, $offset);
     } @else if (meta.type-of($vw) == 'map') {
-        @include proportional-box-responsive($vw, $aspect-ratio, $vw, $offset);
+        @include _proportional-box-responsive($vw, $aspect-ratio, $vw, $offset);
     } @else if (meta.type-of($offset) == 'map') {
-        @include proportional-box-responsive($offset, $aspect-ratio, $vw, $offset);
+        @include _proportional-box-responsive($offset, $aspect-ratio, $vw, $offset);
     } @else {
-        @include proportional-height($aspect-ratio, $vw, $offset)
+        @include _proportional-height($aspect-ratio, $vw, $offset)
     }
 }
 
-@mixin proportional-height($aspect-ratio, $vw, $offset) {
+/// Calculates height based on values passed
+///
+/// @param {number} $aspect-ratio 
+/// @param {CSS <length>} $vw 
+/// @param {CSS <length>} $offset 
+
+@mixin _proportional-height($aspect-ratio, $vw, $offset) {
     @if (meta.type-of($aspect-ratio) == 'null') {
         @error "$aspect-ratio undefined. Ensure all maps passed as arguments contain the same breakpoints.";
     }
@@ -37,7 +53,13 @@
 }
 
 // Only the keys matter in the sizes map. The values aren't touched.
-@mixin proportional-box-responsive($sizes, $aspect-ratio, $vw, $offset) {
+/// 
+/// @param {map} $sizes 
+/// @param {number or map} $aspect-ratio 
+/// @param {CSS <length> or map} $vw 
+/// @param {CSS <length> or map} $offset 
+
+@mixin _proportional-box-responsive($sizes, $aspect-ratio, $vw, $offset) {
     @each $breakpoint, $size in $sizes {
 
         $bp-ratio: $aspect-ratio;
@@ -56,10 +78,10 @@
         }
 
         @if $breakpoint == 'base' {
-            @include proportional-height($bp-ratio, $bp-vw, $bp-offset);
+            @include _proportional-height($bp-ratio, $bp-vw, $bp-offset);
         } @else {
             @include breakpoint(map-get($breakpointList, $breakpoint)) {
-                @include proportional-height($bp-ratio, $bp-vw, $bp-offset);
+                @include _proportional-height($bp-ratio, $bp-vw, $bp-offset);
             }
         }
     }
