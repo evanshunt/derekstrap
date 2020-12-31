@@ -1,8 +1,9 @@
 // The order is importent here to avoid errors on compile
 @forward 'scss/breakpoints/index';
-@forward 'scss/text-sizing/index';
+@forward 'scss/card-pattern/index';
+@forward 'scss/map-math/index';
 @forward 'scss/proportional-box/index';
 @forward 'scss/proportional-text/index';
 @forward 'scss/spacing/index';
-@forward 'scss/card-pattern/index';
-@forward 'scss/map-math/index';
+@forward 'scss/text-sizing/index';
+@forward 'scss/utility/index';
