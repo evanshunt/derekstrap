@@ -278,12 +278,14 @@ $section-spacing: (
 
 #### Applying to only one side
 
-Note that when the spacing is applied to only one side the element, the opposite side gets set to zero. It is not possible at this time to use the mixin to set different spacing on either side of the element using the same attribute. Configuring both sides independently will be possible in version 1.0.
+Spacing can be applied to a single side of the element by passing the side as the second argument (left or right, or top or bottom). Note that when the spacing is applied to only one side the element, the opposite side gets set to zero. If you do not wish to zero out the opposite side, append '-only' to the name of the side.
 
 ```
 .content-block {
+    // Applies spacing to the left side and zeros out the spacing on the right
     @include derekstrap.horizontal-spacing($regular-margins, 'left');
-    @include derekstrap.vertical-spacing($section-spacing, 'top');
+    // Applies spacing to the top, but does not set a bottom spacing
+    @include derekstrap.vertical-spacing($section-spacing, 'top-only');
 }
 ```
 
