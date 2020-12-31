@@ -83,7 +83,7 @@ JS features
 
 ### Breakpoints
 
-The breakpoints module consists of both SCSS and JS pieces. The SCSS piece is just a set of variables that doesn't do much on it's own, but it is used by other modules to configure responsive sizing, and by the JS piece to enable JS conditions and triggers tied to the same SCSS breakpoints. The breakpoints module assumes a mobile first design pattern; it is used to generate `min-width` media queries.
+The breakpoints module consists of both SCSS and JS pieces. The SCSS piece consistes of two parts. The first is a set of variables that doesn't do much on it's own, but it is used by other modules to configure responsive sizing, and by the JS piece to enable JS conditions and triggers tied to the same SCSS breakpoints. The breakpoints module assumes a mobile first design pattern; it is used to generate `min-width` media queries.
 
 You can override and individual breakpoint by configuring the variable for that breakpoint 
 
@@ -106,6 +106,18 @@ Or you can add to the breakpoint list by configuring the map variable which cont
         'desktop-gargantuan:': 3840px
     )
 );
+```
+
+The second piece of breakpoints SCSS is a mixin that functions as a wrapper around the [Breakpoint Sass library](http://breakpoint-sass.com). Calling the Derekstrap mixin operates exactly like calling the breakpoint-sass mixin, except it allows you to pass the name of a breakpoint in your $breakpointList as an argument to generate a min-width query.
+
+```
+@use '~@evanshunt/derekstrap';
+
+h4 {
+    @include derekstrap.breakpoint('desktop') {
+        font-size: 2em;
+    }
+}
 ```
 
 #### CSS Exports
