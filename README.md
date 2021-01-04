@@ -67,6 +67,8 @@ SubModules
 * [Breakpoints](#breakpoints)
 * [Card Pattern](#card-pattern)
 * [debounce.js](#debounce-js)
+* [Map Math](#map-math)
+* [Map Slice](#map-slice)
 * [Proportional Box](#proportional-box)
 * [Proportional Text](#proportional-text)
 * [setUserAgent.js](#setuseragent-js)
@@ -234,6 +236,16 @@ window.addEventListener('resize', myResizeFunction);
 ```
 
 See [src/Breakpoints.js](src/Breakpoints.js) for another example.
+
+### Map Math
+
+Because so much of Derekstrap's functionality depends on breakpoint map variables, we've included some tools to generate new maps from existing ones. The first set of tools allows basic mathematical operations to be run against every value in a map set.
+
+@TODO: finish docs here
+
+### Map Slice
+
+@TODO: Add slice docs
 
 ### Proportional Box
 

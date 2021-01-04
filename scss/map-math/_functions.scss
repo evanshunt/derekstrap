@@ -1,8 +1,8 @@
 @function map-multiply($value1, $value2, $calc: false) {
     @if (meta.type-of($value1) == 'map') {
-        @return map-multiply-responsive($value1, $value1, $value2, $calc);
+        @return _map-multiply-responsive($value1, $value1, $value2, $calc);
     } @else if (meta.type-of($value2) == 'map') {
-        @return map-multiply-responsive($value2, $value1, $value2, $calc);
+        @return _map-multiply-responsive($value2, $value1, $value2, $calc);
     } @else {
         @if $calc {
             @return calc(#{$value1} * #{$value2});
@@ -11,7 +11,7 @@
     }
 }
 
-@function map-multiply-responsive($sizes, $value1, $value2, $calc: false) {
+@function _map-multiply-responsive($sizes, $value1, $value2, $calc: false) {
     $map: ();
 
     @each $breakpoint, $size in $sizes {
@@ -36,9 +36,9 @@
 
 @function map-divide($value1, $value2, $calc: false) {
     @if (meta.type-of($value1) == 'map') {
-        @return map-divide-responsive($value1, $value1, $value2, $calc);
+        @return _map-divide-responsive($value1, $value1, $value2, $calc);
     } @else if (meta.type-of($value2) == 'map') {
-        @return map-divide-responsive($value2, $value1, $value2, $calc);
+        @return _map-divide-responsive($value2, $value1, $value2, $calc);
     } @else {
         @if $calc {
             @return calc(#{$value1} / #{$value2});
@@ -47,7 +47,7 @@
     }
 }
 
-@function map-divide-responsive($sizes, $value1, $value2, $calc: false) {
+@function _map-divide-responsive($sizes, $value1, $value2, $calc: false) {
     $map: ();
 
     @each $breakpoint, $size in $sizes {
@@ -72,9 +72,9 @@
 
 @function map-add($value1, $value2, $calc: false) {
     @if (meta.type-of($value1) == 'map') {
-        @return map-add-responsive($value1, $value1, $value2, $calc);
+        @return _map-add-responsive($value1, $value1, $value2, $calc);
     } @else if (meta.type-of($value2) == 'map') {
-        @return map-add-responsive($value2, $value1, $value2, $calc);
+        @return _map-add-responsive($value2, $value1, $value2, $calc);
     } @else {
         @if $calc {
             @return calc(#{$value1} + #{$value2});
@@ -83,7 +83,7 @@
     }
 }
 
-@function map-add-responsive($sizes, $value1, $value2, $calc: false) {
+@function _map-add-responsive($sizes, $value1, $value2, $calc: false) {
     $map: ();
 
     @each $breakpoint, $size in $sizes {
@@ -108,9 +108,9 @@
 
 @function map-subtract($value1, $value2, $calc: false) {
     @if (meta.type-of($value1) == 'map') {
-        @return map-subtract-responsive($value1, $value1, $value2, $calc);
+        @return _map-subtract-responsive($value1, $value1, $value2, $calc);
     } @else if (meta.type-of($value2) == 'map') {
-        @return map-subtract-responsive($value2, $value1, $value2, $calc);
+        @return _map-subtract-responsive($value2, $value1, $value2, $calc);
     } @else {
         @if $calc {
             @return calc(#{$value1} - #{$value2});
@@ -119,7 +119,7 @@
     }
 }
 
-@function map-subtract-responsive($sizes, $value1, $value2, $calc: false) {
+@function _map-subtract-responsive($sizes, $value1, $value2, $calc: false) {
     $map: ();
 
     @each $breakpoint, $size in $sizes {
