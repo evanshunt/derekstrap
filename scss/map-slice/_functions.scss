@@ -1,0 +1,20 @@
+@function map-slice($map, $start-key, $finish-key) {
+    $newmap: ();
+    $append: false;
+
+    @each $key, $value in $map {
+        @if ($start-key == $key) {
+            $append: true;
+        }
+
+        @if ($append) {
+            $newmap: map.set($newmap, $key, $value);
+        }
+
+        @if ($finish-key == $key) {
+            $append: false;
+        }
+    }
+
+    @return $newmap;
+} 
