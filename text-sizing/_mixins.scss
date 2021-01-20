@@ -1,4 +1,4 @@
-@use '~@sass-collective/sass-rem' as rem;
+@use '~@sass-collective/sass-rem' as *;
 @use '~breakpoint-sass/stylesheets/breakpoint' as *;
 @use '../breakpoints/index' as *;
 
