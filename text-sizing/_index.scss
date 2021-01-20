@@ -1,7 +1,7 @@
 @forward 'mixins';
 @forward 'variables';
 
-@use '~sass-rem/rem' as *;
+@use '~@sass-collective/sass-rem' as rem;
 @use '../breakpoints/index' as *;
 @use 'mixins' as *;
 @use 'variables' as *;
