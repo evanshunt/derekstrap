@@ -1,5 +1,4 @@
 @use '~sass-rem/rem' as *;
-@use '~breakpoint-sass/stylesheets/breakpoint' as *;
 @use '../breakpoints/index' as *;
 
 @mixin responsive-sizing($sizes) {

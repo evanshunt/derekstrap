@@ -1,6 +1,5 @@
 @use 'sass:meta';
 @use 'sass:map';
-@use '~breakpoint-sass/stylesheets/breakpoint' as *;
 @use '../breakpoints/index' as *;
 
 // For each argument either a single value, or a breakpoint map can be passed

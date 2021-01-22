@@ -1,6 +1,5 @@
 @use 'sass:meta';
 @use 'sass:map';
-@use '~breakpoint-sass/stylesheets/breakpoint' as *;
 @use '../breakpoints/index' as *;
 
 @mixin card-pattern($child-selector, $columns, $gutter: 0, $row-space: 0) {

@@ -1,6 +1,5 @@
 @forward 'functions';
 
-@use '~breakpoint-sass/stylesheets/breakpoint' as *;
 @use '../breakpoints/index' as *;
 @use '../text-sizing/index' as *;
 @use 'functions' as *;
