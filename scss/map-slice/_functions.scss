@@ -1,3 +1,5 @@
+@use "sass:map";
+
 @function map-slice($map, $start-key, $finish-key) {
     $newmap: ();
     $append: false;
