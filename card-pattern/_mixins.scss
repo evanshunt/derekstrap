@@ -29,7 +29,7 @@
 
         $bp-row-space: $row-space;
         @if (meta.type-of($row-space) == 'map') {
-            $bp-row-space: map.get($row-space, $breakpoint),
+            $bp-row-space: map.get($row-space, $breakpoint)
         }
 
         @if $breakpoint == 'base' {
