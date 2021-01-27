@@ -71,7 +71,7 @@ SubModules
 * [Map Slice](#map-slice)
 * [Proportional Box](#proportional-box)
 * [Proportional Text](#proportional-text)
-* [setUserAgent.js](#setuseragent-js)
+* [setUserAgent.js](#setuseragentjs)
 * [Spacing](#spacing)
 * [Text Sizing](#text-sizing)
 
@@ -357,3 +357,44 @@ Spacing can be applied to a single side of the element by passing the side as th
     @include derekstrap.vertical-spacing($section-spacing, 'top-only');
 }
 ```
+
+### Card Pattern
+
+The card pattern module includes a mixin to quickly generate a common card layout pattern using flexbox. It sets the size and margins of both parent and child elements and allows passing breakpoint maps for arguments to create a responsive layout. If you pass more than one breakpoint map as an argument, ensure they contain the exact same breakpoints and that all included breakpoints have been configured in the $breakpointList variable.
+
+### Example Usage 
+
+```
+@use '~@evanshunt/derekstrap';
+
+// This will create a 4 column layout with a 2rem gutter and 3rem space between rows
+.parent-element {
+    @include derekstrap.card-pattern('.child-selector', 4, 2rem, 3rem);
+}
+
+// This will create a layout with a varying number of columns depending on breakpoint
+.parent-element {
+    @include derekstrap.card-pattern('.child-selector', (
+        'base': 1,
+        'tablet': 2,
+        'desktop': 3
+    ), 2rem, 3rem);
+}
+
+// This will create a layout with varying columns and gutter size
+.parent-element {
+    @include derekstrap.card-pattern(
+        '.child-selector',
+        (
+            'base': 1,
+            'tablet': 2,
+            'desktop': 3
+        ),
+        (
+            'base': 2rem,
+            'tablet': 1rem,
+            'desktop': 0.5rem
+        ),
+        3rem
+    );
+}

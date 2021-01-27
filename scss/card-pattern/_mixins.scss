@@ -34,12 +34,12 @@
 
         $bp-row-space: $row-space;
         @if (meta.type-of($row-space) == 'map') {
-            $bp-row-space: map.get($row-space, $breakpoint),
+            $bp-row-space: map.get($row-space, $breakpoint)
         }
 
         $bp-inner-property: $inner-property;
         @if (meta.type-of($inner-property) == 'map') {
-            $bp-inner-property: map.get($inner-property, $breakpoint),
+            $bp-inner-property: map.get($inner-property, $breakpoint)
         }
 
         @if $breakpoint == 'base' {
