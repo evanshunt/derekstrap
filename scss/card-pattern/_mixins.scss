@@ -66,11 +66,19 @@
         @error "$inner-property undefined. Ensure all maps passed as arguments contain the same breakpoints.";
     }
 
-    width: calc(100% + #{$gutter}); // possibly unneccessary
+    @if ($gutter == 0) {
+        width: 100%;
+    } @else {
+        width: calc(100% + #{$gutter}); // possibly unneccessary
+    }
     margin: (-1 * $row-space / 2) (-1 * $gutter / 2);
 
     #{$child-selector} {
         #{$inner-property}: ($row-space / 2) ($gutter / 2);
-        width: calc(100% / #{$columns} - #{$gutter});
+        @if ($gutter == 0) {
+            width: calc(100% / #{$columns});
+        } @else {
+            width: calc(100% / #{$columns} - #{$gutter});
+        }
     }
 }
