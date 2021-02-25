@@ -1,5 +1,5 @@
 export default (() => {
-    if (typeof window.CustomEvent !== 'undefined') {
+    if (typeof window.CustomEvent === 'function') {
         return window.CustomEvent;
     }
 
