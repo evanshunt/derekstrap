@@ -1,4 +1,5 @@
 import debounce from "./debounce";
+import CustomEvent from './CustomEventPolyfill';
 
 const Breakpoints = {
     breakpoints: {},
