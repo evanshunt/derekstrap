@@ -357,3 +357,7 @@ Spacing can be applied to a single side of the element by passing the side as th
     @include derekstrap.vertical-spacing($section-spacing, 'top-only');
 }
 ```
+
+### Text Sizing
+
+@TODO: docmuent this module
