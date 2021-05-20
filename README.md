@@ -105,7 +105,7 @@ Or you can add to the breakpoint list by configuring the map variable which cont
         'desktop': 992px,
         'desktop-large': 1440px,
         'desktop-extra-large': 1920px,
-        'desktop-gargantuan:': 3840px
+        'desktop-gargantuan': 3840px
     )
 );
 ```
