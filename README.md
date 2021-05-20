@@ -128,7 +128,7 @@ If you take a look at [breakpoints/_variables.scss](breakpoints/_variables.scss)
 
 #### JS usage
 
-The breakpoints module needs to be imported and initialized with a breakpoint list in order to work. Making use of the CSS export mentioned above you can initialize the JS module with the breakpoints found in your SCSS. This should be done in your project code rather than within the module in order for any project overrides to be inherited in the JS.
+The breakpoints module needs to be imported and initialized with a breakpoint list in order to work. Making use of the CSS export mentioned above you can initialize the JS module with the breakpoints found in your SCSS. This needs to be done in your project code rather than within the module in order for any project overrides to be inherited in the JS.
 
 ##### Initilization
 
@@ -357,44 +357,3 @@ Spacing can be applied to a single side of the element by passing the side as th
     @include derekstrap.vertical-spacing($section-spacing, 'top-only');
 }
 ```
-
-### Card Pattern
-
-The card pattern module includes a mixin to quickly generate a common card layout pattern using flexbox. It sets the size and margins of both parent and child elements and allows passing breakpoint maps for arguments to create a responsive layout. If you pass more than one breakpoint map as an argument, ensure they contain the exact same breakpoints and that all included breakpoints have been configured in the $breakpointList variable.
-
-### Example Usage 
-
-```
-@use '~@evanshunt/derekstrap';
-
-// This will create a 4 column layout with a 2rem gutter and 3rem space between rows
-.parent-element {
-    @include derekstrap.card-pattern('.child-selector', 4, 2rem, 3rem);
-}
-
-// This will create a layout with a varying number of columns depending on breakpoint
-.parent-element {
-    @include derekstrap.card-pattern('.child-selector', (
-        'base': 1,
-        'tablet': 2,
-        'desktop': 3
-    ), 2rem, 3rem);
-}
-
-// This will create a layout with varying columns and gutter size
-.parent-element {
-    @include derekstrap.card-pattern(
-        '.child-selector',
-        (
-            'base': 1,
-            'tablet': 2,
-            'desktop': 3
-        ),
-        (
-            'base': 2rem,
-            'tablet': 1rem,
-            'desktop': 0.5rem
-        ),
-        3rem
-    );
-}
