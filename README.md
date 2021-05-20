@@ -124,7 +124,7 @@ h4 {
 
 #### CSS Exports
 
-If you take a look at [breakpoints/_variables.scss](breakpoints/_variables.scss), you'll notice that it ends with an `:export` statement. This statement allows us to pass values that can will be parsed by `[css-loader](https://github.com/webpack-contrib/css-loader)` and available within a JavaScript file which imports the SCSS. Documentation can be found [here](https://github.com/css-modules/icss#export).
+If you take a look at [breakpoints/_variables.scss](breakpoints/_variables.scss), you'll notice that it ends with an `:export` statement. This statement allows us to pass values that can will be parsed by [css-loader](https://github.com/webpack-contrib/css-loader) and available within a JavaScript file which imports the SCSS. Documentation can be found [here](https://github.com/css-modules/icss#export).
 
 #### JS usage
 
