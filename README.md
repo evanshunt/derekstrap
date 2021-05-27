@@ -141,6 +141,30 @@ import { Breakpoints } from '@evanshunt/derekstrap';
 Breakpoints.init(breakpointList);
 ```
 
+###### NB: Is your breakpointList empty?
+
+Newer versions of css-loader (5+) may need extra configuration in order to handle ```:export```. Below is an example snippet which should fix the issue:
+
+```
+test: /\.s?css$/i,
+	use: [
+    'style-loader',
+    {
+        loader: 'css-loader?sourceMap=true',
+        /// Important bits below
+        options: {
+            importLoaders: 1,
+            modules: {
+                compileType: 'icss'
+            }
+        }
+    },
+    /// Important bits above
+    'postcss-loader',
+    'sass-loader'
+  ]
+```
+
 ##### Methods
 
 After initilization. The following methods can be used.
