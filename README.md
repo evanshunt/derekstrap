@@ -127,13 +127,37 @@ import { Breakpoints } from '@evanshunt/derekstrap';
 Breakpoints.init(breakpointList);
 ```
 
+###### NB: Is your breakpointList empty?
+
+Newer versions of css-loader (5+) may need extra configuration in order to handle ```:export```. Below is an example snippet which should fix the issue:
+
+```
+test: /\.s?css$/i,
+	use: [
+    'style-loader',
+    {
+        loader: 'css-loader?sourceMap=true',
+        /// Important bits below
+        options: {
+            importLoaders: 1,
+            modules: {
+                compileType: 'icss'
+            }
+        }
+    },
+    /// Important bits above
+    'postcss-loader',
+    'sass-loader'
+  ]
+```
+
 ##### Methods
 
 After initilization. The following methods can be used.
 
 * `Breakpoints.get()`: returns an array of breakpoints that the current viewport size has surpassed.
 * `Breakpoints.getCurrent()`: returns the largest single breakpoint that the current viewport size has surpassed.
-* `minWidth($breakpointName)`: when passed a string value corresponding to a breakpoint name returns a boolean indicating whether the current viewport size has surpassed the given breakpoint.
+* `Breakpoints.minWidth($breakpointName)`: when passed a string value corresponding to a breakpoint name returns a boolean indicating whether the current viewport size has surpassed the given breakpoint.
 
 ##### Events
 
