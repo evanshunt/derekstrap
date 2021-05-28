@@ -1,14 +1,14 @@
-@use '~@sass-collective/sass-rem' as *;
+@use '~@sass-collective/rem';
 @use '~breakpoint-sass/stylesheets/breakpoint' as *;
 @use '../breakpoints/index' as *;
 
 @mixin responsive-sizing($sizes) {
     @each $breakpoint, $size in $sizes {
         @if $breakpoint == 'base' {
-            font-size: rem($size);
+            font-size: rem.convert($size);
         } @else {
             @include breakpoint(map-get($breakpointList, $breakpoint)) {
-                font-size: rem($size);
+                font-size: rem.convert($size);
             }
         }
     }

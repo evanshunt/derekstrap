@@ -17,7 +17,7 @@
   "author": "Evans Hunt Tech Team (https://www.evanshunt.com)",
   "license": "ISC",
   "dependencies": {
-    "@sass-collective/sass-rem": "^1.5.0",
+    "@sass-collective/rem": "^1.3.0",
     "breakpoint-sass": "^2.7.1"
   },
   "peerDependencies": {
