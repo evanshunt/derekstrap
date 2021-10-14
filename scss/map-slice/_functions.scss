@@ -1,4 +1,4 @@
-@use "~sass-map-magic";
+@use "~sass-map-magic" as sass-map-magic;
 
 // This function no longer needs to be in this module, but keeping it here as an alias for now
 @function map-slice($map, $start-key, $finish-key) {
