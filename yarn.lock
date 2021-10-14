@@ -3163,6 +3163,11 @@ safe-regex@^1.1.0:
   dependencies:
     ret "~0.1.10"
 
+sass-map-magic@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/sass-map-magic/-/sass-map-magic-0.0.2.tgz#dcc489e039dca5d76c5bb330254f72d86d75c139"
+  integrity sha512-wcCxvULcTvE4u1xKuG4Ma7xUTb7NbUpSLRwQIfMU52OeohqsuNUt+eus2VPNKT31jlwwOh4b/x8q6QJ6dx8Ang==
+
 sass-rem@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/sass-rem/-/sass-rem-2.0.1.tgz#dd863ec9ca5e0597eae5dd239f1f00a6c0f729b0"
