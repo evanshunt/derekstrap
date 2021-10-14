@@ -1,146 +1,21 @@
-@use "sass:map";
-@use "sass:meta";
+@use "~sass-map-magic";
 
+// This function no longer needs to be in this module, but keeping it here as an alias for now
 @function map-multiply($value1, $value2, $calc: false) {
-    @if (meta.type-of($value1) == 'map') {
-        @return _map-multiply-responsive($value1, $value1, $value2, $calc);
-    } @else if (meta.type-of($value2) == 'map') {
-        @return _map-multiply-responsive($value2, $value1, $value2, $calc);
-    } @else {
-        @if $calc {
-            @return calc(#{$value1} * #{$value2});
-        }
-        @return $value1 * $value2;
-    }
+    @return sass-map-magic.multiply($value1, $value2, $calc);
 }
 
-@function _map-multiply-responsive($sizes, $value1, $value2, $calc: false) {
-    $map: ();
-
-    @each $breakpoint, $size in $sizes {
-        $bp-value1: $value1;
-        @if (meta.type-of($value1) == 'map') {
-            $bp-value1: map.get($value1, $breakpoint)
-        }
-
-        $bp-value2: $value2;
-        @if (meta.type-of($value2) == 'map') {
-            $bp-value2: map.get($value2, $breakpoint)
-        }
-        @if $calc {
-            $map: map.set($map, $breakpoint, calc(#{$bp-value1} * #{$bp-value2}));
-        } @else {
-            $map: map.set($map, $breakpoint, $bp-value1 * $bp-value2);
-        }
-    }
-
-    @return $map;
-}
-
+// This function no longer needs to be in this module, but keeping it here as an alias for now
 @function map-divide($value1, $value2, $calc: false) {
-    @if (meta.type-of($value1) == 'map') {
-        @return _map-divide-responsive($value1, $value1, $value2, $calc);
-    } @else if (meta.type-of($value2) == 'map') {
-        @return _map-divide-responsive($value2, $value1, $value2, $calc);
-    } @else {
-        @if $calc {
-            @return calc(#{$value1} / #{$value2});
-        }
-        @return $value1 / $value2;
-    }
+    @return sass-map-magic.divide($value1, $value2, $calc);
 }
 
-@function _map-divide-responsive($sizes, $value1, $value2, $calc: false) {
-    $map: ();
-
-    @each $breakpoint, $size in $sizes {
-        $bp-value1: $value1;
-        @if (meta.type-of($value1) == 'map') {
-            $bp-value1: map.get($value1, $breakpoint)
-        }
-
-        $bp-value2: $value2;
-        @if (meta.type-of($value2) == 'map') {
-            $bp-value2: map.get($value2, $breakpoint)
-        }
-        @if $calc {
-            $map: map.set($map, $breakpoint, calc(#{$bp-value1} / #{$bp-value2}));
-        } @else {
-            $map: map.set($map, $breakpoint, $bp-value1 / $bp-value2);
-        }
-    }
-
-    @return $map;
-}
-
+// This function no longer needs to be in this module, but keeping it here as an alias for now
 @function map-add($value1, $value2, $calc: false) {
-    @if (meta.type-of($value1) == 'map') {
-        @return _map-add-responsive($value1, $value1, $value2, $calc);
-    } @else if (meta.type-of($value2) == 'map') {
-        @return _map-add-responsive($value2, $value1, $value2, $calc);
-    } @else {
-        @if $calc {
-            @return calc(#{$value1} + #{$value2});
-        }
-        @return $value1 + $value2;
-    }
+    @return sass-map-magic.add($value1, $value2, $calc);
 }
 
-@function _map-add-responsive($sizes, $value1, $value2, $calc: false) {
-    $map: ();
-
-    @each $breakpoint, $size in $sizes {
-        $bp-value1: $value1;
-        @if (meta.type-of($value1) == 'map') {
-            $bp-value1: map.get($value1, $breakpoint)
-        }
-
-        $bp-value2: $value2;
-        @if (meta.type-of($value2) == 'map') {
-            $bp-value2: map.get($value2, $breakpoint)
-        }
-        @if $calc {
-            $map: map.set($map, $breakpoint, calc(#{$bp-value1} + #{$bp-value2}));
-        } @else {
-            $map: map.set($map, $breakpoint, $bp-value1 + $bp-value2);
-        }
-    }
-
-    @return $map;
-}
-
+// This function no longer needs to be in this module, but keeping it here as an alias for now
 @function map-subtract($value1, $value2, $calc: false) {
-    @if (meta.type-of($value1) == 'map') {
-        @return _map-subtract-responsive($value1, $value1, $value2, $calc);
-    } @else if (meta.type-of($value2) == 'map') {
-        @return _map-subtract-responsive($value2, $value1, $value2, $calc);
-    } @else {
-        @if $calc {
-            @return calc(#{$value1} - #{$value2});
-        }
-        @return $value1 - $value2;
-    }
-}
-
-@function _map-subtract-responsive($sizes, $value1, $value2, $calc: false) {
-    $map: ();
-
-    @each $breakpoint, $size in $sizes {
-        $bp-value1: $value1;
-        @if (meta.type-of($value1) == 'map') {
-            $bp-value1: map.get($value1, $breakpoint)
-        }
-
-        $bp-value2: $value2;
-        @if (meta.type-of($value2) == 'map') {
-            $bp-value2: map.get($value2, $breakpoint)
-        }
-        @if $calc {
-            $map: map.set($map, $breakpoint, calc(#{$bp-value1} - #{$bp-value2}));
-        } @else {
-            $map: map.set($map, $breakpoint, $bp-value1 - $bp-value2);
-        }
-    }
-
-    @return $map;
+    @return sass-map-magic.subtract($value1, $value2, $calc);
 }
