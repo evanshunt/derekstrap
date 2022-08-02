@@ -22,50 +22,53 @@
     color: $base-font-color;
 }
 
-body,
-%base-text {
-    @extend %body-style;
-    @include responsive-sizing($base-sizes);
-}
+@if $use-text-sizing {
 
-h1,
-.h1-text,
-%h1-text {
-    @extend %heading-style;
-    @include responsive-sizing($h1-sizes);
-}
+    body,
+    %base-text {
+        @extend %body-style;
+        @include responsive-sizing($base-sizes);
+    }
 
-h2,
-.h2-text,
-%h2-text {
-    @extend %heading-style;
-    @include responsive-sizing($h2-sizes);
-}
+    h1,
+    .h1-text,
+    %h1-text {
+        @extend %heading-style;
+        @include responsive-sizing($h1-sizes);
+    }
 
-h3,
-.h3-text,
-%h3-text {
-    @extend %heading-style;
-    @include responsive-sizing($h3-sizes);
-}
+    h2,
+    .h2-text,
+    %h2-text {
+        @extend %heading-style;
+        @include responsive-sizing($h2-sizes);
+    }
 
-h4,
-.h4-text,
-%h4-text {
-    @extend %heading-style;
-    @include responsive-sizing($h4-sizes);
-}
+    h3,
+    .h3-text,
+    %h3-text {
+        @extend %heading-style;
+        @include responsive-sizing($h3-sizes);
+    }
 
-h5,
-.h5-text,
-%h5-text {
-    @extend %heading-style;
-    @include responsive-sizing($h5-sizes);
-}
+    h4,
+    .h4-text,
+    %h4-text {
+        @extend %heading-style;
+        @include responsive-sizing($h4-sizes);
+    }
 
-h6,
-.h6-text,
-%h6-text {
-    @extend %heading-style;
-    @include responsive-sizing($h6-sizes);
+    h5,
+    .h5-text,
+    %h5-text {
+        @extend %heading-style;
+        @include responsive-sizing($h5-sizes);
+    }
+
+    h6,
+    .h6-text,
+    %h6-text {
+        @extend %heading-style;
+        @include responsive-sizing($h6-sizes);
+    }
 }

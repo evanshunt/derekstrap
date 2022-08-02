@@ -1,0 +1,5 @@
+@use '../index' with (
+    $base-font-family: ('Raleway', Tacoma, sans-serif),
+    $base-line-height: 1.8,
+    $heading-margin-top: 0
+);
