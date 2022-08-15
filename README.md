@@ -153,9 +153,8 @@ test: /\.s?css$/i,
         loader: 'css-loader?sourceMap=true',
         /// Important bits below
         options: {
-            importLoaders: 1,
             modules: {
-                compileType: 'icss'
+                mode: 'icss' // css-loader 5.x used "compileType, 6.x uses "mode"
             }
         }
     },
