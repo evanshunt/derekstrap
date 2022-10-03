@@ -4,7 +4,7 @@ An SCSS base layout and styles library by Evans Hunt.
 
 ## Requirements
 
-This library uses `@forward` and `@use` keywords only available in [Dart Sass](https://sass-lang.com/dart-sass). It will not compile with Node Sass. [Fibers](https://github.com/laverdet/node-fibers) should be included as well to improve compile speed.
+This library uses `@forward` and `@use` keywords only available in [Dart Sass](https://sass-lang.com/dart-sass). It will not compile with Node Sass.
 
 Resources:
 
@@ -85,7 +85,7 @@ JS features
 
 The breakpoints module consists of both SCSS and JS pieces. The SCSS piece is just a set of variables that doesn't do much on it's own, but it is used by other modules to configure responsive sizing, and by the JS piece to enable JS conditions and triggers tied to the same SCSS breakpoints. The breakpoints module assumes a mobile first design pattern; it is used to generate `min-width` media queries.
 
-You can override and individual breakpoint by configuring the variable for that breakpoint 
+You can override and individual breakpoint by configuring the variable for that breakpoint
 
 ```
 @use '~@evanshunt/derekstrap' with (
@@ -192,7 +192,7 @@ Derekstrap includes a `debounce()` helper function, used by the Breakpoints modu
 import { debounce } from '@evanshunt/derekstrap';
 
 var myResizeFunction = debounce(function() {
-	// do something here that you want to happen on 
+	// do something here that you want to happen on
     // resize, but not so often that it crashes the browser
 }, 250);
 
@@ -314,7 +314,7 @@ Note that when the spacing is applied to only one side the element, the opposite
 
 The card pattern module includes a mixin to quickly generate a common card layout pattern using flexbox. It sets the size and margins of both parent and child elements and allows passing breakpoint maps for arguments to create a responsive layout. If you pass more than one breakpoint map as an argument, ensure they contain the exact same breakpoints and that all included breakpoints have been configured in the $breakpointList variable.
 
-### Example Usage 
+### Example Usage
 
 ```
 @use '~@evanshunt/derekstrap';
