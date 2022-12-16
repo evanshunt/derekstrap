@@ -100,7 +100,7 @@ Or you can add to the breakpoint list by configuring the map variable which cont
 ```
 @use '~@evanshunt/derekstrap' with (
     $breakpointList: (
-        'large-phone': 414px,
+        'phone-large': 414px,
         'tablet': 720px,
         'desktop': 992px,
         'desktop-large': 1440px,
@@ -260,17 +260,16 @@ window.addEventListener('resize', myResizeFunction);
 
 See [src/Breakpoints.js](src/Breakpoints.js) for another example.
 
-### Map Math
+### Map Math / Slice
 
 Because so much of Derekstrap's functionality depends on breakpoint map variables, we've included some tools to generate new maps from existing ones. The first set of tools allows basic mathematical operations to be run against every value in a map set.
 
-@TODO: finish docs here
+See the [Sass Map Magic](https://github.com/davejtoews/sass-map-magic) docs for details.
 
-### Map Slice
-
-@TODO: Add slice docs
-
+These functions are included in Derekstrap as aliases, but they can also be used directly from the source library.
 ### Proportional Box
+
+_This module may now be obsolete as [aspect-ratio](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio) now has pretty good [browser support](https://caniuse.com/mdn-css_properties_aspect-ratio)._
 
 The proportional box module is intended to allow you to define an aspect ratio for an element. Often useful for elements which have a background image. The module consists of 3 mixins, two of which are helper methods for `proportional-box()` which is the one you will most likely use in your project.
 
@@ -314,12 +313,26 @@ background-position: center;
 
 ### Proportional Text
 
+_This module is no longer enabled by default, as it produces [accessibility issues](https://gist.github.com/ChrissiQ/c1df2e455e7912700f7d06497f11bde5)_
+
 This module sets the base sizing of text relative to viewport, with resets at each breakpoint defined and configured with the [Breakpoints](#Breakpoints) module. This allows layouts to behave more consistently with fewer odd issues caused by line wrapping. The breakpoint resets ensure the text does not huge on large screens.
 
-In most cases it will be sufficient to import this module in your stylesheets without any additional configuration. It is included by default if you import Derekstrap but to use this module alone you would do the following:
+To enable proportional text at the root level, set the config value `$use-root-proportional-text`.
 
-```
-@use '~@evanshunt/derekstrap/proportional-text';
+'''scss
+@use '~@evanshunt/derekstrap' with (
+    $breakpointList: (
+        $use-root-proportional-text: true
+    )
+);
+'''
+
+To enable it on a specific selector, use the placholder `%proportional-text`
+
+```scss
+.widget {
+    @extend %proportional-text;
+}
 ```
 
 ### setUserAgent.js
@@ -350,7 +363,7 @@ To standardize spacing across blocks it will be useful to define your own variab
 
 $regular-margins: (
     'base': 2rem,
-    'large-phone': 4rem,
+    'phone-large': 4rem,
     'desktop': 10vw,
     'desktop-large': 12vw,
     'desktop-extra-large': 16vw

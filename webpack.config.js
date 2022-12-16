@@ -3,7 +3,7 @@ const path = require('path');
 module.exports = {
     entry: {
         main: path.resolve(__dirname, './src/index.js'),
-        demo: path.resolve(__dirname, './demo/demo/js')
+        demo: path.resolve(__dirname, './demo/demo.js')
     },
     output: {
         path: path.resolve(__dirname, 'dist'),
@@ -27,7 +27,10 @@ module.exports = {
                     {
                         loader: 'css-loader',
                         options: {
-                            sourceMap: true
+                            sourceMap: true,
+                            modules: {
+                                mode: 'icss' // css-loader 5.x used "compileType, 6.x uses "mode
+                            }
                         }
                     },
                     'postcss-loader',

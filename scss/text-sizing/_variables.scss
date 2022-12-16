@@ -21,7 +21,7 @@ $base-spacing: 1rem !default;
 
 $heading-font-family: $base-font-family !default;
 $heading-line-height: 1.2 !default;
-$heading-font-color: $base-font-color !default;
+$heading-font-color: inherit !default;
 $heading-font-weight: $fw-bold !default;
 
 $heading-margin: $base-spacing !default;
@@ -37,7 +37,7 @@ $h6-font-size: 15px !default;
 
 $base-sizes: (
     'base': $base-font-size,
-    'large-phone': $base-font-size,
+    'phone-large': $base-font-size,
     'tablet': $base-font-size,
     'desktop': $base-font-size,
     'desktop-large': $base-font-size,
@@ -46,7 +46,7 @@ $base-sizes: (
 
 $h1-sizes: (
     'base': $h1-font-size,
-    'large-phone': $h1-font-size,
+    'phone-large': $h1-font-size,
     'tablet': $h1-font-size,
     'desktop': $h1-font-size,
     'desktop-large': $h1-font-size,
@@ -55,7 +55,7 @@ $h1-sizes: (
 
 $h2-sizes: (
     'base': $h2-font-size,
-    'large-phone': $h2-font-size,
+    'phone-large': $h2-font-size,
     'tablet': $h2-font-size,
     'desktop': $h2-font-size,
     'desktop-large': $h2-font-size,
@@ -64,7 +64,7 @@ $h2-sizes: (
 
 $h3-sizes: (
     'base': $h3-font-size,
-    'large-phone': $h3-font-size,
+    'phone-large': $h3-font-size,
     'tablet': $h3-font-size,
     'desktop': $h3-font-size,
     'desktop-large': $h3-font-size,
@@ -73,7 +73,7 @@ $h3-sizes: (
 
 $h4-sizes: (
     'base': $h4-font-size,
-    'large-phone': $h4-font-size,
+    'phone-large': $h4-font-size,
     'tablet': $h4-font-size,
     'desktop': $h4-font-size,
     'desktop-large': $h4-font-size,
@@ -82,7 +82,7 @@ $h4-sizes: (
 
 $h5-sizes: (
     'base': $h5-font-size,
-    'large-phone': $h5-font-size,
+    'phone-large': $h5-font-size,
     'tablet': $h5-font-size,
     'desktop': $h5-font-size,
     'desktop-large': $h5-font-size,
@@ -91,7 +91,7 @@ $h5-sizes: (
 
 $h6-sizes: (
     'base': $h6-font-size,
-    'large-phone': $h6-font-size,
+    'phone-large': $h6-font-size,
     'tablet': $h6-font-size,
     'desktop': $h6-font-size,
     'desktop-large': $h6-font-size,

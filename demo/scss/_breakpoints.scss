@@ -1,0 +1,27 @@
+// In your project write
+// @use '~@evanshunt/derekstrap';
+@use '../../index' as derekstrap;
+
+#breakpoints {
+    color: darkred;
+
+    @include derekstrap.breakpoint('phone-large') {
+        color: chocolate;
+    }
+
+    @include derekstrap.breakpoint('tablet') {
+        color: goldenrod;
+    }
+
+    @include derekstrap.breakpoint('desktop') {
+        color: green;
+    }
+
+    @include derekstrap.breakpoint('desktop-large') {
+        color: navy;
+    }
+
+    @include derekstrap.breakpoint('desktop-extra-large') {
+        color: purple;
+    }
+}

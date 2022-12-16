@@ -71,10 +71,10 @@
     } @else {
         width: calc(100% + #{$gutter}); // possibly unneccessary
     }
-    margin: (-1 * $row-space / 2) (-1 * $gutter / 2);
+    margin: (-1 * $row-space * 0.5) (-1 * $gutter * 0.5);
 
     #{$child-selector} {
-        #{$inner-property}: ($row-space / 2) ($gutter / 2);
+        #{$inner-property}: ($row-space * 0.5) ($gutter * 0.5);
         @if ($gutter == 0) {
             width: calc(100% / #{$columns});
         } @else {

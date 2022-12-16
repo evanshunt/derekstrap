@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @use 'sass:meta';
 @use 'sass:map';
 @use '../breakpoints/index' as *;
@@ -48,7 +50,7 @@
         @error "$offset undefined. Ensure all maps passed as arguments contain the same breakpoints.";
     }
 
-    height: calc(#{1 / $aspect-ratio} * (#{$vw} - 2 * #{$offset}));
+    height: calc(#{math.div(1, $aspect-ratio)} * (#{$vw} - 2 * #{$offset}));
 }
 
 // Only the keys matter in the sizes map. The values aren't touched.
