@@ -1,6 +1,7 @@
 @use "sass:math";
 
-// If $base-font-size is changed, the second argument here will be necessary
+// The default value of 16px assumes $base-font-size has not been overriden
+// and this is applied outside of any other em context.
 @function em-calc($size, $base-size: 16px) {
     $emSize: math.div($size, $base-size);
     @return #{$emSize}em;

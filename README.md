@@ -424,3 +424,44 @@ A configuration variable is available to opt-out of these styles.
     $use-text-defaults: false
 );
 ```
+
+#### Configuring defaults
+
+This module uses a large number of configurable default variables. These can be seen in the [variables](scss/text-defaults/_variables.scss) file. Most projects will likely need to modify default fonts and heading styles.
+
+```scss
+@use '~@evanshunt/derekstrap' with (
+    $heading-font-family: Raleway, sans-serif,
+    $heading-line-height: 1.3,
+    $heading-font-color: colors.$light-grey,
+    $h1-sizes: (
+        'base': 36px,
+        'phone-large': 40px,
+        'tablet': 44px,
+        'desktop': 52px,
+        'desktop-large': 52px,
+        'desktop-extra-large': 56px
+    )
+);
+```
+
+#### Responsive sizing
+
+This module also includes a mixin that can be used to set the size of any selector the same way we set it for headings.
+
+```scss
+@use '~@evanshunt/derekstrap';
+
+$blockquote-sizes: (
+    'base': 18px,
+    'phone-large': 20px,
+    'tablet': 22px,
+    'desktop': 24px,
+    'desktop-large': 26px,
+    'desktop-extra-large': 32px
+);
+
+blockquote {
+    derekstrap.responsive-font-sizing($blockquote-sizes);
+}
+```
