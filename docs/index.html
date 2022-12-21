@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Derekstrap</title>
+    <title>Derekstrap Demo</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="https://evanshunt.com/images/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://evanshunt.com/images/favicon/favicon-32x32.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/scss.min.js"></script>
 </head>
 <body>
-    <header>
+    <header id="header">
         <h1>Derekstrap Demo</h1>
         <p>Below is a non-exhaustive set of examples for the features in Derekstrap</p>
     </header>
-    <main>
+    <main id="main">
         <section>
             <div id="breakpoints">
                 <h2>Breakpoints</h2>
@@ -22,9 +23,9 @@
                 <p>The largest current breakpoint is: <code id="currentBreakpoint"></code></p>
             </div>
             <h3>scss</h3>
-            <pre><code class="language-scss" data-src="/scss/_breakpoints.scss"></code></pre>
+            <pre><code class="language-scss" data-src="scss/_breakpoints.scss"></code></pre>
             <h3>js</h3>
-            <pre><code class="language-js" data-src="/js/breakpoints.js"></code></pre>
+            <pre><code class="language-js" data-src="js/breakpoints.js"></code></pre>
         </section>
         <hr>
         <section>
@@ -51,7 +52,7 @@
             </div>
             <br>
             <h3>scss</h3>
-            <pre><code class="language-scss" data-src="/scss/_cards.scss"></code></pre>
+            <pre><code class="language-scss" data-src="scss/_cards.scss"></code></pre>
         </section>
         <hr>
         <section>
@@ -61,7 +62,7 @@
                 <p>Anything in this section that is sized in em units should resize in scale with the screen width. Resetting at specified breakpoints.</p>
                 <img src="https://via.placeholder.com/300x150" alt="Placeholder image">
             </div>
-            <pre><code class="language-scss" data-src="/scss/_proportional-text.scss"></code></pre>
+            <pre><code class="language-scss" data-src="scss/_proportional-text.scss"></code></pre>
         </section>
         <hr>
         <section>
@@ -118,9 +119,9 @@
                     </div>
                 </div>
             </div>
-            <pre><code class="language-scss" data-src="/scss/_spacing.scss"></code></pre>
+            <pre><code class="language-scss" data-src="scss/_spacing.scss"></code></pre>
         </section>
     </main>
-    <script src="../dist/demo.js"></script>
+    <script src="dist/demo.js"></script>
 </body>
 </html>

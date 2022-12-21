@@ -1,4 +1,4 @@
-// In your project write
+// In your project, write
 // import breakpointList from '../styles/main.scss';
 // import { Breakpoints } from '@evanshunt/derekstrap';
 import breakpointList from '../demo.scss';
