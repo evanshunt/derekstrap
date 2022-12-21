@@ -20,53 +20,53 @@
     color: $base-font-color;
 }
 
-@if $use-text-sizing {
+@if $use-text-defaults {
 
     body,
     %base-text {
         @extend %body-style;
-        @include responsive-sizing($base-sizes);
+        @include responsive-font-sizing($base-sizes);
     }
 
     h1,
     .h1-text,
     %h1-text {
         @extend %heading-style;
-        @include responsive-sizing($h1-sizes);
+        @include responsive-font-sizing($h1-sizes);
     }
 
     h2,
     .h2-text,
     %h2-text {
         @extend %heading-style;
-        @include responsive-sizing($h2-sizes);
+        @include responsive-font-sizing($h2-sizes);
     }
 
     h3,
     .h3-text,
     %h3-text {
         @extend %heading-style;
-        @include responsive-sizing($h3-sizes);
+        @include responsive-font-sizing($h3-sizes);
     }
 
     h4,
     .h4-text,
     %h4-text {
         @extend %heading-style;
-        @include responsive-sizing($h4-sizes);
+        @include responsive-font-sizing($h4-sizes);
     }
 
     h5,
     .h5-text,
     %h5-text {
         @extend %heading-style;
-        @include responsive-sizing($h5-sizes);
+        @include responsive-font-sizing($h5-sizes);
     }
 
     h6,
     .h6-text,
     %h6-text {
         @extend %heading-style;
-        @include responsive-sizing($h6-sizes);
+        @include responsive-font-sizing($h6-sizes);
     }
 }

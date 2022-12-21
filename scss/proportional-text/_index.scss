@@ -2,13 +2,13 @@
 
 @use '../breakpoints/index' as *;
 @use 'functions' as *;
+@use '../text-defaults/index' as *;
 @use 'variables' as *;
 
 %proportional-text {
     font-size: proportional-text($base-font-size, 320px);
 
-    @each $name,
-    $width in $breakpointList {
+    @each $name, $width in $breakpointList {
         @include breakpoint($width) {
             font-size: proportional-text($base-font-size, $width);
         }

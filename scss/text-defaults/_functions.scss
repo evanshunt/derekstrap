@@ -1,0 +1,7 @@
+@use "sass:math";
+
+// If $base-font-size is changed, the second argument here will be necessary
+@function em-calc($size, $base-size: 16px) {
+    $emSize: math.div($size, $base-size);
+    @return #{$emSize}em;
+}

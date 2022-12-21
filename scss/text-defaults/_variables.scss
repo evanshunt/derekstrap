@@ -1,4 +1,6 @@
-$use-text-sizing: true !default;
+@use 'functions';
+
+$use-text-defaults: true !default;
 
 $fw-thin: 100 !default;
 $fw-light: 300 !default;
@@ -28,12 +30,12 @@ $heading-margin: $base-spacing !default;
 $heading-margin-top: 0 !default;
 $heading-margin-bottom: $heading-margin !default;
 
-$h1-font-size: 32px !default;
-$h2-font-size: 24px !default;
-$h3-font-size: 20px !default;
-$h4-font-size: 18px !default;
-$h5-font-size: 16px !default;
-$h6-font-size: 15px !default;
+$h1-font-size: functions.em-calc(32px) !default;
+$h2-font-size: functions.em-calc(24px) !default;
+$h3-font-size: functions.em-calc(20px) !default;
+$h4-font-size: functions.em-calc(18px) !default;
+$h5-font-size: functions.em-calc(16px) !default;
+$h6-font-size: functions.em-calc(15px) !default;
 
 $base-sizes: (
     'base': $base-font-size,

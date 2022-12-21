@@ -13,7 +13,7 @@ Resources:
 
 ## Installation
 
-```
+```bash
 yarn add @evanshunt/derekstrap;
 ```
 
@@ -21,7 +21,7 @@ yarn add @evanshunt/derekstrap;
 
 If making any javascript changes, a `yarn build` needs to be run before commit. To install the included pre-commit hook, run the following from the project root:
 
-```
+```bash
 cp pre-commit.sh .git/hooks/pre-commit
 chmod +x .git/hooks/pre-commit
 ```
@@ -38,7 +38,7 @@ To override any variables defined in the library simply `@import` your own varia
 
 You can configure a module exactly once. Before using other styles add something like the following in a `_config.scss` file to override variables
 
-```
+```scss
 @use '~@evanshunt/derekstrap' with (
     $base-font-family: ('Raleway', Tacoma, sans-serif),
     $base-line-height: 1.8,
@@ -50,7 +50,7 @@ You can configure a module exactly once. Before using other styles add something
 
 Initialization example shown here. See [below](#Details--Examples) for details on specific module use.
 
-```
+```js
 // This should be the path to your SCSS entry point which pulls in the Derekstrap SCSS.
 import breakpointList from '../styles/main.scss';
 
@@ -83,13 +83,15 @@ JS features
 
 ## Details / Examples
 
+The best reference for these modules is likely to read the source code directly. The examples below are not exhaustive; there may be advanced possibilities outside of what is shown here.
+
 ### Breakpoints
 
 The breakpoints module consists of both SCSS and JS pieces. The SCSS piece consistes of two parts. The first is a set of variables that doesn't do much on it's own, but it is used by other modules to configure responsive sizing, and by the JS piece to enable JS conditions and triggers tied to the same SCSS breakpoints. The breakpoints module assumes a mobile first design pattern; it is used to generate `min-width` media queries.
 
 You can override and individual breakpoint by configuring the variable for that breakpoint 
 
-```
+```scss
 @use '~@evanshunt/derekstrap' with (
     $tablet: 800px
 );
@@ -97,7 +99,7 @@ You can override and individual breakpoint by configuring the variable for that 
 
 Or you can add to the breakpoint list by configuring the map variable which contains all the breakpoints
 
-```
+```scss
 @use '~@evanshunt/derekstrap' with (
     $breakpointList: (
         'phone-large': 414px,
@@ -112,7 +114,7 @@ Or you can add to the breakpoint list by configuring the map variable which cont
 
 The second piece of breakpoints SCSS is a mixin that functions as a wrapper around the [Breakpoint Sass library](http://breakpoint-sass.com). Calling the Derekstrap mixin operates exactly like calling the breakpoint-sass mixin, except it allows you to pass the name of a breakpoint in your $breakpointList as an argument to generate a min-width query.
 
-```
+```scss
 @use '~@evanshunt/derekstrap';
 
 h4 {
@@ -132,7 +134,7 @@ The breakpoints module needs to be imported and initialized with a breakpoint li
 
 ##### Initilization
 
-```
+```js
 // This should be the path to your SCSS entry point which pulls in the Derekstrap SCSS.
 import breakpointList from '../styles/main.scss';
 
@@ -145,7 +147,7 @@ Breakpoints.init(breakpointList);
 
 Newer versions of css-loader (5+) may need extra configuration in order to handle ```:export```. Below is an example snippet which should fix the issue:
 
-```
+```js
 test: /\.s?css$/i,
 	use: [
     'style-loader',
@@ -186,7 +188,7 @@ After the breakpoints module is initialized it fires a `breakpointChange` event 
 
 This can be used to trigger your own JS code on breakpoint changes. The example below fires whenever the viewport crosses the "desktop" breakpoint, either from smaller than desktop to bigger or visa versa:
 
-```
+```js
 import { Breakpoints } from '@evanshunt/derekstrap';
 Breakpoints.init(breakpointList);
 
@@ -205,7 +207,7 @@ The card pattern module includes a mixin to quickly generate a common card layou
 
 ### Example Usage 
 
-```
+```scss
 @use '~@evanshunt/derekstrap';
 
 // This will create a 4 column layout with a 2rem gutter and 3rem space between rows
@@ -247,10 +249,10 @@ Derekstrap includes a `debounce()` helper function, used by the Breakpoints modu
 
 #### Example usage
 
-```
+```js
 import { debounce } from '@evanshunt/derekstrap';
 
-var myResizeFunction = debounce(function() {
+const myResizeFunction = debounce(function() {
 	// do something here that you want to happen on 
     // resize, but not so often that it crashes the browser
 }, 250);
@@ -282,7 +284,7 @@ All arguments will accept a single value or a breakpoint map. If passing a break
 
 The following background image properties are added to the element using this mixin:
 
-```
+```css
 background-size: cover;
 background-repeat: no-repeat;
 background-position: center;
@@ -291,7 +293,7 @@ background-position: center;
 <!-- @TODO: add multi-breakpoint examples -->
 #### Example usage
 
-```
+```scss
 @use '~@evanshunt/derekstrap';
 
 // Gives a full bleed widget element a 3/2 aspect ratio
@@ -339,14 +341,14 @@ To enable it on a specific selector, use the placholder `%proportional-text`
 
 When Derekstrap is imported and initialized it runs [setUserAgent.js](src/setUserAgent.js) which appends the browser user agent string to a `data-user-agent` attribute `html` element.
 
-```
+```js
 import { Derekstrap} from '@evanshunt/derekstrap';
 Derekstrap.init();
 ```
 
 This will result in markup like the following:
 
-```
+```html
 <html lang="en" data-useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Safari/605.1.15">
 ```
 
@@ -358,7 +360,7 @@ To standardize spacing across blocks it will be useful to define your own variab
 
 #### Basic example usage
 
-```
+```scss
 @use '~@evanshunt/derekstrap';
 
 $regular-margins: (
@@ -385,7 +387,7 @@ $section-spacing: (
 
 Spacing can be applied to a single side of the element by passing the side as the second argument (left or right, or top or bottom). Note that when the spacing is applied to only one side the element, the opposite side gets set to zero. If you do not wish to zero out the opposite side, append '-only' to the name of the side.
 
-```
+```scss
 .content-block {
     // Applies spacing to the left side and zeros out the spacing on the right
     @include derekstrap.horizontal-spacing($regular-margins, 'left');
@@ -394,6 +396,31 @@ Spacing can be applied to a single side of the element by passing the side as th
 }
 ```
 
-### Text Sizing
+#### Changing the attribute
 
-@TODO: docmuent this module
+By default these methods use padding. The can be configured globally to use margins by passing a config value.
+
+```scss
+@use '~@evanshunt/derekstrap' with (
+    $horizontal-spacing-attribute: 'margin',
+    $vertical-spacing-attribute: 'margin'
+);
+```
+
+The attribute can also be switched in any given call to the function by passing it as the third argument.
+
+```scss
+@include derekstrap.vertical-spacing($vertical-spacing, 'both', 'margin');
+```
+
+### Text Defaults
+
+This module applies text style defaults and provides a system for setting the defaults via configuration variables. It is the only portion of Derekstrap which generates css by default without opting in or calling funtions.
+
+A configuration variable is available to opt-out of these styles.
+
+```scss
+@use '~@evanshunt/derekstrap' with (
+    $use-text-defaults: false
+);
+```
