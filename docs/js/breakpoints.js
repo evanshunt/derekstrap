@@ -7,10 +7,11 @@ import { Breakpoints } from '../../src/index';
 Breakpoints.init(breakpointList);
 
 const currentBreakpoint = document.querySelector('#currentBreakpoint');
-console.log(currentBreakpoint);
 
-currentBreakpoint.innerHTML = Breakpoints.getCurrent();
+if (currentBreakpoint) {
+    currentBreakpoint.innerHTML = Breakpoints.getCurrent();
 
-window.addEventListener('breakpointChange', (event) => {
-    currentBreakpoint.innerHTML = event.detail.breakpoint;
-});
+    window.addEventListener('breakpointChange', (event) => {
+        currentBreakpoint.innerHTML = event.detail.breakpoint;
+    });
+}

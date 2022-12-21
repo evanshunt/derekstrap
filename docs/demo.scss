@@ -9,8 +9,8 @@
 @use 'scss/proportional-text';
 @use 'scss/spacing';
 
-header,
-main {
+header#header,
+main#main {
     max-width: 850px;
     margin: 0 auto;
     padding: 2rem 1rem;

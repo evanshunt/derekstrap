@@ -2,11 +2,11 @@ const path = require('path');
 
 module.exports = {
     entry: {
-        main: path.resolve(__dirname, './src/index.js'),
-        demo: path.resolve(__dirname, './docs/demo.js')
+        'dist/main': path.resolve(__dirname, './src/index.js'),
+        'docs/dist/demo': path.resolve(__dirname, './docs/demo.js')
     },
     output: {
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, './'),
         filename: '[name].js',
         library: 'Derekstrap',
         libraryTarget: 'umd'
