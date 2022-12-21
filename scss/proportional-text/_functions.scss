@@ -1,3 +1,5 @@
+@use "sass:math";
+
 @function proportional-text($font-size, $viewport-size) {
-  @return ($font-size*100/$viewport-size)+vw;
+  @return math.div($font-size*100, $viewport-size)+vw;
 }

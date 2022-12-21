@@ -4,7 +4,7 @@
 @forward 'scss/map-math/index';
 @forward 'scss/map-slice/index';
 @forward 'scss/proportional-box/index';
-@forward 'scss/text-sizing/index'; // must come before proportional text
+@forward 'scss/text-defaults/index'; // must come before proportional text
 @forward 'scss/proportional-text/index';
 @forward 'scss/spacing/index';
 @forward 'scss/utility/index';

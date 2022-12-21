@@ -1,7 +1,7 @@
 {
   "name": "@evanshunt/derekstrap",
   "version": "0.3.4",
-  "description": "A base layout and styles library by Evans Hunt",
+  "description": "A base styles and scss utility library by Evans Hunt",
   "main": "dist/main.js",
   "sass": "_index.scss",
   "style": "_index.scss",
@@ -12,18 +12,19 @@
     "hunt"
   ],
   "scripts": {
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "watch": "webpack --mode production --watch"
   },
   "author": "Evans Hunt Tech Team (https://www.evanshunt.com)",
   "license": "ISC",
   "dependencies": {
     "breakpoint-sass": "^2.7.1",
-    "sass-map-magic": "^0.0.2",
-    "sass-rem": "^2.0.1"
+    "sass-map-magic": "^0.0.3",
+    "sass-rem": "^3.0.0"
   },
   "peerDependencies": {
-    "sass": "^1.32.0",
-    "sass-loader": "^10.1.0"
+    "sass": "^1.56.0",
+    "sass-loader": "^13.2.0"
   },
   "repository": {
     "type": "git",
@@ -34,11 +35,16 @@
   },
   "homepage": "https://github.com/evanshunt/derekstrap#readme",
   "devDependencies": {
-    "@babel/core": "^7.11.1",
-    "@babel/preset-env": "^7.11.0",
-    "babel-loader": "^8.1.0",
-    "core-js": "^3.6.5",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "babel-loader": "^8.2.5",
+    "core-js": "^3.23.1",
+    "css-loader": "^6.7.3",
+    "postcss-loader": "^7.0.2",
+    "sass": "^1.56.2",
+    "sass-loader": "^13.2.0",
+    "style-loader": "^3.3.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   }
 }
