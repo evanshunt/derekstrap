@@ -1,0 +1,21 @@
+@use '~breakpoint-sass/stylesheets/breakpoint' as bp-sass;
+@use 'variables' as *;
+@use 'sass:map';
+@use 'sass:meta';
+
+/// Wrapper around breakpoint sass module which allows passing the name of a breakpoint in the 
+/// breakpoint list rather than a CSS value
+///
+/// @param {string, or CSS <length>} $breakpointName 
+
+@mixin breakpoint($breakpointName) {
+    $breakpointValue: $breakpointName;
+
+    @if (meta.type-of($breakpointName) == 'string' and map.has-key($breakpointList, $breakpointName)) {
+        $breakpointValue: map.get($breakpointList, $breakpointName);
+    }
+
+    @include bp-sass.breakpoint($breakpointValue) {
+        @content;
+    }
+}

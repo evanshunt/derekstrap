@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Derekstrap Demo</title>
+    <link rel="icon" type="image/png" sizes="16x16" href="https://evanshunt.com/images/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://evanshunt.com/images/favicon/favicon-32x32.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/languages/scss.min.js"></script>
+</head>
+<body>
+    <header id="header">
+        <h1>Derekstrap Demo</h1>
+        <p>Below is a non-exhaustive set of examples for the features in Derekstrap</p>
+        <nav>
+            <a href="#breakpoints">Breakpoints</a>
+            |
+            <a href="#cards">Cards</a>
+            |
+            <a href="#proportional-text">Proportional Text</a>
+            |
+            <a href="#spacing">Spacing</a>
+            <hr>
+            See the <a href="https://github.com/evanshunt/derekstrap/#derekstrap">full documentation on GitHub</a>
+            <br>
+            Preview the default styles on the <a href="kitchen-sink.html">HTML5 Kitchen Sink</a>
+        </nav>
+
+    </header>
+    <main id="main">
+        <section>
+            <div id="breakpoints">
+                <h2>Breakpoints</h2>
+                <p>The colour of this text changes depending on screen size.</p>
+                <p>The largest current breakpoint is: <code id="currentBreakpoint"></code></p>
+            </div>
+            <h3>scss</h3>
+            <pre><code class="language-scss" data-src="scss/breakpoints.scss"></code></pre>
+            <h3>js</h3>
+            <pre><code class="language-js" data-src="js/breakpoints.js"></code></pre>
+        </section>
+        <hr>
+        <section>
+            <div id="cards">
+                <h2>Cards</h2>
+                <p>The layout below will have a different column count and different spacing depending on breakpoint.</p>
+                <div class="parent">
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                    <div class="child"></div>
+                </div>
+            </div>
+            <br>
+            <h3>scss</h3>
+            <pre><code class="language-scss" data-src="scss/cards.scss"></code></pre>
+        </section>
+        <hr>
+        <section>
+            <div id="proportional-text">
+                <h2>Proportional text</h2>
+                <h3>Auto scaling by view width</h3>
+                <p>Anything in this section that is sized in em units should resize in scale with the screen width. Resetting at specified breakpoints.</p>
+                <img src="https://via.placeholder.com/300x150" alt="Placeholder image">
+            </div>
+            <pre><code class="language-scss" data-src="scss/proportional-text.scss"></code></pre>
+        </section>
+        <hr>
+        <section>
+            <div id="spacing">
+                <h2>Spacing</h2>
+                <p>Utility classes have been created using Derekstrap's spacing functions to create different spacing combinations.</p>
+                <div class="wrapper">
+                    <div class="block vertical-padding horizontal-margin">
+                        <div class="inner">
+                            <h3><code>.vertical-padding.horizontal-margin</code></h3>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="block vertical-margin left-padding">
+                        <div class="inner">
+                            <h3><code>.vertical-margin.left-padding</code></h3>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="block top-padding right-margin">
+                        <div class="inner">
+                            <h3><code>.top-padding.right-margin</code></h3>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="block bottom-margin horizontal-padding">
+                        <div class="inner">
+                            <h3><code>.bottom-margin.horizontal-padding</code></h3>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="block vertical-margin horizontal-padding">
+                        <div class="inner">
+                            <h3><code>.vertical-margin.horizontal-padding</code></h3>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="block vertical-margin left-margin">
+                        <div class="inner">
+                            <h3><code>.vertical-margin.left-margin</code></h3>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="block bottom-margin horizontal-margin">
+                        <div class="inner">
+                            <h3><code>.bottom-margin.horizontal-margin</code></h3>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="block top-margin right-padding">
+                        <div class="inner">
+                            <h3><code>.top-margin.right-padding</code></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <pre><code class="language-scss" data-src="scss/spacing.scss"></code></pre>
+        </section>
+    </main>
+    <script src="dist/demo.js"></script>
+</body>
+</html>

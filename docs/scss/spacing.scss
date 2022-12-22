@@ -1,0 +1,86 @@
+// In your project, write
+// @use '~@evanshunt/derekstrap';
+@use '../../index' as derekstrap;
+
+$horizontal-spacing: (
+    'base': 2rem,
+    'phone-large': 4rem,
+    'desktop': 10vw,
+    'desktop-large': 12vw,
+    'desktop-extra-large': 16vw
+);
+
+$vertical-spacing: (
+    'base': 2rem,
+    'desktop': 4rem,
+    'desktop-extra-large': 8rem
+);
+
+#spacing {
+    .wrapper {
+        background-color: lightsalmon;
+
+        .block {
+            background-color: lightgreen;
+            border: 1px solid black;
+
+            .inner {
+                background-color: white;
+                height: 5rem;
+                text-align: center;
+            }
+        }
+
+        .vertical-padding {
+            @include derekstrap.vertical-spacing($vertical-spacing);
+        }
+
+        .vertical-margin {
+            @include derekstrap.vertical-spacing($vertical-spacing, 'both', 'margin');
+        }
+
+        .top-padding {
+            @include derekstrap.vertical-spacing($vertical-spacing, 'top');
+        }
+
+        .top-margin {
+            @include derekstrap.vertical-spacing($vertical-spacing, 'top', 'margin');
+        }
+
+        .bottom-padding {
+            @include derekstrap.vertical-spacing($vertical-spacing, 'bottom');
+        }
+
+        .bottom-margin {
+            @include derekstrap.vertical-spacing($vertical-spacing, 'bottom', 'margin');
+        }
+
+        .horizontal-padding {
+            @include derekstrap.horizontal-spacing($horizontal-spacing);
+        }
+
+        .horizontal-margin {
+            @include derekstrap.horizontal-spacing($horizontal-spacing, 'both', 'margin');
+        }
+
+        .left-padding {
+            @include derekstrap.horizontal-spacing($horizontal-spacing, 'left');
+        }
+
+        .left-margin {
+            @include derekstrap.horizontal-spacing($horizontal-spacing, 'left', 'margin');
+        }
+
+        .right-padding {
+            @include derekstrap.horizontal-spacing($horizontal-spacing, 'right');
+        }
+
+        .right-margin {
+            @include derekstrap.horizontal-spacing($horizontal-spacing, 'right', 'margin');
+        }
+        
+        hr {
+            margin: 0;
+        }
+    }
+}

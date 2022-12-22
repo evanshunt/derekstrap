@@ -1,0 +1,208 @@
+@use '../breakpoints/index' as *;
+@use 'variables' as *;
+@use 'sass:string';
+@use 'sass:meta';
+@use 'sass:map';
+
+
+/// Applies horizontal whitespace
+/// 
+/// @param {CSS <length> or map} $spacing
+///     The horizontal whitespace on either side of the element or a map of such values
+/// @param {string or map} $side ['both']
+///     The side to apply the spacing to. 'both', 'left', 'left-only', 'right', or 'right-only'
+///     Or a map of such values
+///     'left' or 'right' zero out the opposite side.
+///     'left-only', and 'right-only' do not zero out the opposite side
+/// @param {string or map} $attribute [$horizontal-spacing-attribute]
+///     The type of spacing to use. 'margin', 'padding' or '' - or a map of such values
+///     If a blank string is passed the 'left' or 'right' positional attributes will be used.
+
+@mixin horizontal-spacing($spacing, $side: 'both', $attribute: $horizontal-spacing-attribute) {
+    
+    // Determine which, if any, argument to use as the base breakpoint map
+    @if (meta.type-of($spacing) == 'map') {
+        @include _horizontal-spacer-responsive($spacing, $spacing, $side, $attribute);
+    } @else if (meta.type-of($side) == 'map') {
+        @include _horizontal-spacer-responsive($side, $spacing, $side, $attribute);
+    } @else if (meta.type-of($attribute) == 'map') {
+        @include _horizontal-spacer-responsive($attribute, $spacing, $side, $attribute);
+    } @else {
+        @include _horizontal-spacer($spacing, $side, $attribute)
+    }
+}
+
+/// Applies vertical whitespace
+/// 
+/// @param {CSS <length> or map} $spacing
+///     The vertical whitespace on either side of the element or a map of such values
+/// @param {string or map} $side ['both']
+///     The side to apply the spacing to. 'both', 'top', 'top-only', 'bottom', or 'bottom-only'
+///     Or a map of such values
+///     'top' or 'bottom' zero out the opposite side.
+///     'top-only', and 'bottom-only' do not zero out the opposite side
+/// @param {string or map} $attribute [$vertical-spacing-attribute]
+///     The type of spacing to use. 'margin', 'padding' or '' - or a map of such values
+///     If a blank string is passed the 'top' or 'bottom' positional attributes will be used.
+
+@mixin vertical-spacing($spacing, $side: 'both', $attribute: $vertical-spacing-attribute) {
+    
+    // Determine which, if any, argument to use as the base breakpoint map
+    @if (meta.type-of($spacing) == 'map') {
+        @include _vertical-spacer-responsive($spacing, $spacing, $side, $attribute);
+    } @else if (meta.type-of($side) == 'map') {
+        @include _vertical-spacer-responsive($side, $spacing, $side, $attribute);
+    } @else if (meta.type-of($attribute) == 'map') {
+        @include _vertical-spacer-responsive($attribute, $spacing, $side, $attribute);
+    } @else {
+        @include _vertical-spacer($spacing, $side, $attribute)
+    }
+}
+
+/// Clears horizontal spacing at all breakpoints
+///
+/// @param {string} $side ['both']
+///     'left', 'right', or 'both' will all clear both sides
+///     Use 'left-only' or 'right-only' to clear a single side
+/// @param {string} $attribute [$horizontal-spacing-attribute] 
+
+@mixin no-vertical-spacing($side: 'both', $attribute: $vertical-spacing-attribute) {
+    @include _vertical-spacer(0, $side, $attribute);
+
+    @each $name, $width in $breakpointList {
+        @include breakpoint($width) {
+            @include _vertical-spacer(0, $side, $attribute);
+        }
+    }
+}
+
+/// Clears vertical spacing at all breakpoints
+///
+/// @param {string} $side ['both']
+///     'top', 'bottom', or 'both' will all clear both sides
+///     Use 'top-only' or 'bottom-only' to clear a single side
+/// @param {string} $attribute [$horizontal-spacing-attribute] 
+
+@mixin no-horizontal-spacing($side: 'both', $attribute: $horizontal-spacing-attribute) {
+    @include _horizontal-spacer(0, $side, $attribute);
+
+    @each $name, $width in $breakpointList {
+        @include breakpoint($width) {
+            @include _horizontal-spacer(0, $side, $attribute);
+        }
+    }
+}
+
+/// @param {CSS <length>} $spacing 
+/// @param {string} $side ['both'] 
+/// @param {string} $attribute [$horizontal-spacing-attribute] 
+
+@mixin _horizontal-spacer($spacing, $side: 'both', $attribute: $horizontal-spacing-attribute) {
+    // allows setting left and right position attributes
+    @if $attribute != '' {
+        $attribute: #{$attribute}-;
+    }
+
+    // just left when left, just right when right
+    // otherwise both
+    @if not string.index($side, 'left') {
+        #{$attribute}right: $spacing;
+    } @else if $side != 'left-only' {
+        #{$attribute}right: 0;
+    }
+    @if not string.index($side, 'right') {
+        #{$attribute}left: $spacing;
+    } @else if $side != 'right-only' {
+        #{$attribute}left: 0;
+    }
+}
+
+
+/// @param {CSS <length>} $spacing 
+/// @param {string} $side ['both'] 
+/// @param {string} $attribute [$vertical-spacing-attribute] 
+
+@mixin _vertical-spacer($spacing, $side: 'both', $attribute: $vertical-spacing-attribute) {
+    // allows setting top and bottom position attributes
+    @if $attribute != '' {
+        $attribute: #{$attribute}-;
+    }
+    // just top when top, just bottom when bottom
+    // otherwise both
+    @if not string.index($side, 'top') {
+        #{$attribute}bottom: $spacing;
+    } @else if $side != 'top-only' {
+        #{$attribute}bottom: 0;
+    }
+    @if not string.index($side, 'bottom') {
+        #{$attribute}top: $spacing;
+    } @else if $side != 'bottom-only' {
+        #{$attribute}top: 0;
+    }
+}
+
+/// @param {map} $sizes 
+/// @param {CSS <length> or map} $spacing 
+/// @param {string or map} $side 
+/// @param {string or map} $attribute [$horizontal-spacing-attribute] 
+
+@mixin _horizontal-spacer-responsive($sizes, $spacing, $side, $attribute: $horizontal-spacing-attribute) {
+    @each $breakpoint, $size in $sizes {
+
+        $bp-spacing: $spacing;
+        @if (meta.type-of($spacing) == 'map') {
+            $bp-spacing: map.get($spacing, $breakpoint)
+        } 
+
+        $bp-side: $side;
+        @if (meta.type-of($side) == 'map') {
+            $bp-side: map.get($side, $breakpoint)
+        } 
+
+        $bp-attribute: $attribute;
+        @if (meta.type-of($attribute) == 'map') {
+            $bp-attribute: map.get($attribute, $breakpoint)
+        } 
+
+        @if $breakpoint == 'base' {
+            @include _horizontal-spacer($bp-spacing, $bp-side, $bp-attribute);
+        } @else {
+            @include breakpoint(map-get($breakpointList, $breakpoint)) {
+                @include _horizontal-spacer($bp-spacing, $bp-side, $bp-attribute);
+            }
+        }
+    }
+}
+
+/// @param {map} $sizes 
+/// @param {CSS <length> or map} $spacing 
+/// @param {string or map} $side 
+/// @param {string} $attribute [$vertical-spacing-attribute] 
+
+@mixin _vertical-spacer-responsive($sizes, $spacing, $side, $attribute: $vertical-spacing-attribute) {
+    @each $breakpoint, $size in $sizes {
+
+        $bp-spacing: $spacing;
+        @if (meta.type-of($spacing) == 'map') {
+            $bp-spacing: map.get($spacing, $breakpoint)
+        } 
+
+        $bp-side: $side;
+        @if (meta.type-of($side) == 'map') {
+            $bp-side: map.get($side, $breakpoint)
+        } 
+
+        $bp-attribute: $attribute;
+        @if (meta.type-of($attribute) == 'map') {
+            $bp-attribute: map.get($attribute, $breakpoint)
+        } 
+
+        @if $breakpoint == 'base' {
+            @include _vertical-spacer($bp-spacing, $bp-side, $bp-attribute);
+        } @else {
+            @include breakpoint(map-get($breakpointList, $breakpoint)) {
+                @include _vertical-spacer($bp-spacing, $bp-side, $bp-attribute);
+            }
+        }
+    }
+}

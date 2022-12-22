@@ -1,11 +1,11 @@
-$large-phone: 414px !default;
+$phone-large: 414px !default;
 $tablet: 720px !default;
 $desktop: 992px !default;
 $desktop-large: 1440px !default;
 $desktop-extra-large: 1920px !default;
 
 $breakpointList: (
-    'large-phone': $large-phone,
+    'phone-large': $phone-large,
     'tablet': $tablet,
     'desktop': $desktop,
     'desktop-large': $desktop-large,

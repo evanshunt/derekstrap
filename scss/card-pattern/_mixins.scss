@@ -1,0 +1,84 @@
+@use 'sass:meta';
+@use 'sass:map';
+@use '../breakpoints/index' as *;
+
+@mixin card-pattern($child-selector, $columns, $gutter: 0, $row-space: 0, $inner-property: 'margin') {
+    padding: 0;
+    display: flex;
+    flex-flow: row wrap;
+
+    @if (meta.type-of($columns) == 'map') {
+        @include card-pattern-responsive($columns, $child-selector, $columns, $gutter, $row-space, $inner-property);
+    } @else if (meta.type-of($gutter) == 'map') {
+        @include card-pattern-responsive($gutter, $child-selector, $columns, $gutter, $row-space, $inner-property);
+    } @else if (meta.type-of($row-space) == 'map') {
+        @include card-pattern-responsive($row-space, $child-selector, $columns, $gutter, $row-space, $inner-property);
+    } @else if (meta.type-of($inner-property) == 'map') {
+        @include card-pattern-responsive($inner-property, $child-selector, $columns, $gutter, $row-space, $inner-property);
+    } @else {
+        @include card-layout($child-selector, $columns, $gutter, $row-space, $inner-property)
+    }
+}
+
+@mixin card-pattern-responsive($sizes, $child-selector, $columns, $gutter, $row-space, $inner-property) {
+    @each $breakpoint, $size in $sizes {
+        $bp-columns: $columns;
+        @if (meta.type-of($columns) == 'map') {
+            $bp-columns: map.get($columns, $breakpoint)
+        }
+
+        $bp-gutter: $gutter;
+        @if (meta.type-of($gutter) == 'map') {
+            $bp-gutter: map.get($gutter, $breakpoint)
+        }
+
+        $bp-row-space: $row-space;
+        @if (meta.type-of($row-space) == 'map') {
+            $bp-row-space: map.get($row-space, $breakpoint)
+        }
+
+        $bp-inner-property: $inner-property;
+        @if (meta.type-of($inner-property) == 'map') {
+            $bp-inner-property: map.get($inner-property, $breakpoint)
+        }
+
+        @if $breakpoint == 'base' {
+            @include card-layout($child-selector, $bp-columns, $bp-gutter, $bp-row-space, $bp-inner-property);
+        } @else {
+            @include breakpoint(map-get($breakpointList, $breakpoint)) {
+                @include card-layout($child-selector, $bp-columns, $bp-gutter, $bp-row-space, $bp-inner-property);
+            }
+        }
+    }
+}
+
+@mixin card-layout($child-selector, $columns, $gutter, $row-space, $inner-property) {
+    @if (meta.type-of($columns) == 'null') {
+        @error "$columns undefined. Ensure all maps passed as arguments contain the same breakpoints.";
+    }
+    @if (meta.type-of($gutter) == 'null') {
+        @error "$gutter undefined. Ensure all maps passed as arguments contain the same breakpoints.";
+    }
+    @if (meta.type-of($row-space) == 'null') {
+        @error "$row-space undefined. Ensure all maps passed as arguments contain the same breakpoints.";
+    }
+    @if (meta.type-of($inner-property) == 'null') {
+        @error "$inner-property undefined. Ensure all maps passed as arguments contain the same breakpoints.";
+    }
+
+    @if ($gutter == 0) {
+        width: 100%;
+    } @else {
+        width: calc(100% + #{$gutter}); // possibly unneccessary
+    }
+    margin: (-1 * $row-space * 0.5) (-1 * $gutter * 0.5);
+
+    #{$child-selector} {
+        #{$inner-property}: ($row-space * 0.5) ($gutter * 0.5);
+        @if ($gutter == 0) {
+            width: calc(100% / #{$columns});
+        } @else {
+            width: calc(100% / #{$columns} - #{$gutter});
+        }
+    }
+}

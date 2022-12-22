@@ -1,0 +1,27 @@
+// In your project, write
+// @use '~@evanshunt/derekstrap';
+@use '../../index' as derekstrap;
+
+#cards {
+    .parent {
+        @include derekstrap.card-pattern('.child',
+            ( // column count
+                'base': 2,
+                'tablet': 3,
+                'desktop': 4
+            ),
+            ( // horizontal gutter
+                'base': 1rem,
+                'tablet': 2rem,
+                'desktop': 3rem
+            ),
+            // vertical gutter
+            1rem
+        );
+
+        .child {
+            background-color: lightblue;
+            height: 8rem;
+        }
+    }
+}

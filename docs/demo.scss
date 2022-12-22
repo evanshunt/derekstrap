@@ -1,0 +1,17 @@
+@use '../index' as derekstrap with (
+    $base-font-family: ('Raleway', Tacoma, sans-serif),
+    $base-line-height: 1.8,
+    $heading-margin-top: 0
+);
+
+@use 'scss/breakpoints';
+@use 'scss/cards';
+@use 'scss/proportional-text';
+@use 'scss/spacing';
+
+header#header,
+main#main {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}

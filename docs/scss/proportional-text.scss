@@ -1,0 +1,11 @@
+// In your project, write
+// @use '~@evanshunt/derekstrap';
+@use '../../index' as derekstrap;
+
+#proportional-text {
+    @extend %proportional-text;
+
+    img {
+        width: 20em;
+    }
+}
