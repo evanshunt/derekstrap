@@ -431,6 +431,8 @@ The attribute can also be switched in any given call to the function by passing 
 
 This module applies text style defaults and provides a system for setting the defaults via configuration variables. It is the only portion of Derekstrap which generates css by default without opting in or calling funtions.
 
+You can preview the default text styles on [this HTML5 Kitchen Sink demo page](https://evanshunt.github.io/derekstrap/kitchen-sink.html)
+
 A configuration variable is available to opt-out of these styles.
 
 ```scss
