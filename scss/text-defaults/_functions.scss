@@ -2,6 +2,7 @@
 
 // The default value of 16px assumes $base-font-size has not been overriden
 // and this is applied outside of any other em context.
+//@todo: document arguments
 @function em-calc($size, $base-size: 16px) {
     $emSize: math.div($size, $base-size);
     @return #{$emSize}em;

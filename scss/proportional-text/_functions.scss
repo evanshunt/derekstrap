@@ -1,5 +1,6 @@
 @use "sass:math";
 
+//@todo: document arguments
 @function proportional-text($font-size, $viewport-size) {
   @return math.div($font-size*100, $viewport-size)+vw;
 }

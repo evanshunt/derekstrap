@@ -4,24 +4,30 @@
 
 #breakpoints {
     color: darkred;
+    background-color: mistyrose;
 
     @include derekstrap.breakpoint('phone-large') {
         color: chocolate;
+        background-color: papayawhip;
     }
 
     @include derekstrap.breakpoint('tablet') {
-        color: goldenrod;
+        color: darkgoldenrod;
+        background-color: ivory;
     }
 
     @include derekstrap.breakpoint('desktop') {
         color: green;
+        background-color: mintcream;
     }
 
     @include derekstrap.breakpoint('desktop-large') {
         color: navy;
+        background-color: aliceblue;
     }
 
     @include derekstrap.breakpoint('desktop-extra-large') {
         color: purple;
+        background-color: lavenderblush;
     }
 }

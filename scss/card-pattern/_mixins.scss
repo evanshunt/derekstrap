@@ -2,6 +2,7 @@
 @use 'sass:map';
 @use '../breakpoints/index' as *;
 
+//@todo: document arguments
 @mixin card-pattern($child-selector, $columns, $gutter: 0, $row-space: 0, $inner-property: 'margin') {
     padding: 0;
     display: flex;
@@ -20,6 +21,7 @@
     }
 }
 
+//@todo: document arguments
 @mixin card-pattern-responsive($sizes, $child-selector, $columns, $gutter, $row-space, $inner-property) {
     @each $breakpoint, $size in $sizes {
         $bp-columns: $columns;
@@ -52,6 +54,7 @@
     }
 }
 
+//@todo: document arguments
 @mixin card-layout($child-selector, $columns, $gutter, $row-space, $inner-property) {
     @if (meta.type-of($columns) == 'null') {
         @error "$columns undefined. Ensure all maps passed as arguments contain the same breakpoints.";

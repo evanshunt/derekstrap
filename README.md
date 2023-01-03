@@ -77,6 +77,7 @@ SubModules
 * [Map Slice](#map-slice)
 * [Proportional Box](#proportional-box)
 * [Proportional Text](#proportional-text)
+* [Responsive Properties](#responsive-properties)
 * [setUserAgent.js](#setuseragentjs)
 * [Spacing](#spacing)
 * [Text Sizing](#text-sizing)
@@ -280,18 +281,85 @@ In most cases it will be sufficient to import this module in your stylesheets wi
 @use '~@evanshunt/derekstrap/proportional-text';
 ```
 
+### Responsive Properties
+
+This module provides a mixin to allow setting one or more css properties at multiple breakpoints with a shorthand syntax. 
+
+#### Example usage
+
+For a single CSS property.
+
+```scss
+@use '~@evanshunt/derekstrap';
+
+.colored-text {
+    @include derekstrap.responsive-properties(
+        'color',
+        (
+            'base': darkred,
+            'phone-large': chocolate,
+            'tablet': darkgoldenrod,
+            'desktop': green,
+            'desktop-large': navy,
+            'desktop-extra-large': purple
+        )
+    );
+}
+```
+
+For multiple CSS Properties 
+
+```scss
+@use '~@evanshunt/derekstrap';
+
+h1 {
+    @include derekstrap.responsive-properties(
+        (
+            'font-size',
+            'margin-bottom'
+        ),
+        (
+            'base': (
+                2rem,
+                1rem
+            ),
+            'phone-large': (
+                2.5rem,
+                1rem
+            ),
+            'tablet': (
+                3rem,
+                1rem
+            ),
+            'desktop': (
+                4rem,
+                1.5rem
+            ),
+            'desktop-large': (
+                5rem,
+                2rem
+            ),
+            'desktop-extra-large': (
+                6rem,
+                3rem
+            ),
+        )
+    );
+}
+```
+
 ### setUserAgent.js
 
 When Derekstrap is imported and initialized it runs [setUserAgent.js](src/setUserAgent.js) which appends the browser user agent string to a `data-user-agent` attribute `html` element.
 
-```
+```scss
 import { Derekstrap} from '@evanshunt/derekstrap';
 Derekstrap.init();
 ```
 
 This will result in markup like the following:
 
-```
+```html
 <html lang="en" data-useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Safari/605.1.15">
 ```
 
@@ -303,7 +371,7 @@ To standardize spacing across blocks it will be useful to define your own variab
 
 #### Basic example usage
 
-```
+```scss
 @use '~@evanshunt/derekstrap';
 
 $regular-margins: (
@@ -330,7 +398,7 @@ $section-spacing: (
 
 Note that when the spacing is applied to only one side the element, the opposite side gets set to zero. It is not possible at this time to use the mixin to set different spacing on either side of the element using the same attribute. Configuring both sides independently will be possible in version 1.0.
 
-```
+```scss
 .content-block {
     @include derekstrap.horizontal-spacing($regular-margins, 'left');
     @include derekstrap.vertical-spacing($section-spacing, 'top');
@@ -609,3 +677,4 @@ blockquote {
     derekstrap.responsive-font-sizing($blockquote-sizes);
 }
 ```
+### @Todo: Document Utility module

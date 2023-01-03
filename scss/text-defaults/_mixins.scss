@@ -1,6 +1,7 @@
 @use '~sass-rem/rem' as rem;
 @use '../breakpoints/index' as *;
 
+//@todo: document arguments
 @mixin responsive-font-sizing($sizes) {
     @each $breakpoint, $size in $sizes {
         @if $breakpoint == 'base' {

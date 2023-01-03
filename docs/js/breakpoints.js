@@ -6,7 +6,7 @@ import { Breakpoints } from '../../src/index';
 
 Breakpoints.init(breakpointList);
 
-const currentBreakpoint = document.querySelector('#currentBreakpoint');
+const currentBreakpoint = document.querySelector('#jsCurrentBreakpoint');
 
 if (currentBreakpoint) {
     currentBreakpoint.innerHTML = Breakpoints.getCurrent();

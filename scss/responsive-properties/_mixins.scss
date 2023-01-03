@@ -1,0 +1,49 @@
+@use '../breakpoints/index' as *;
+@use 'sass:meta';
+@use 'sass:list';
+
+
+// Allows assigning values at multiple breakpoints to any arbitrary css property
+/// 
+/// @param {string | list} $properties
+///     Css property, or list of css properties
+/// @param {map} $sizes
+///     A breakpoint map with the values of the given proprety assigned to a list of 
+///     breakpoints w/in the master breakpoint list. The "base" breakpoint is assigned
+///     without a media query. If the properties value is a list, the value assigned 
+///     to each breakpoint should be a list the exact lengths as the properties, with
+///     corresponding values
+
+@mixin responsive-properties($properties, $sizes) {
+
+    @if meta.type-of($properties) == 'list' {
+        @for $i from 1 through list.length($properties) {
+            $property: list.nth($properties, $i );
+
+            @each $breakpoint, $values in $sizes {
+                @if list.length($values) != list.length($properties) {
+                    @error "List for breakpoint #{breakpoint} does not have the same number of items as the properties list.";
+                }
+
+                @if $breakpoint == 'base' {
+                    #{$property}: list.nth($values, $i);
+                } @else {
+                    @include breakpoint($breakpoint) {
+                        #{$property}: list.nth($values, $i);
+                    }
+                }
+            }
+        }
+
+    } @else {
+        @each $breakpoint, $value in $sizes {
+            @if $breakpoint == 'base' {
+                #{$properties}: $value;
+            } @else {
+                @include breakpoint($breakpoint) {
+                    #{$properties}: $value;
+                }
+            }
+        }
+    }
+}

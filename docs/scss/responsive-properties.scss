@@ -1,0 +1,17 @@
+// In your project, write
+// @use '~@evanshunt/derekstrap';
+@use '../../index' as derekstrap;
+
+#responsive-properties {
+
+    $colors: (
+        'base': (darkred, mistyrose),
+        'phone-large': (chocolate, papayawhip),
+        'tablet': (darkgoldenrod, ivory),
+        'desktop': (green, mintcream),
+        'desktop-large': (navy, aliceblue),
+        'desktop-extra-large': (purple, lavenderblush),
+    );
+
+    @include derekstrap.responsive-properties(('color', 'background-color'), $colors);
+}

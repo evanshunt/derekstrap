@@ -39,4 +39,7 @@ module.exports = {
             }
         ]
     },
+    stats: {
+        loggingDebug: ["sass-loader"],
+    },
 };
