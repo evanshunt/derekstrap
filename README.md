@@ -14,7 +14,7 @@ Resources:
 ## Installation
 
 ```bash
-yarn add @evanshunt/derekstrap;
+yarn add @evanshunt/derekstrap
 ```
 
 ## Development
@@ -210,201 +210,6 @@ window.addEventListener('breakpointChange', (evt) => {
 
 Note that the event emitter is debounced. It will not fire until 50ms have passed since the last resize event.
 
-### debounce.js
-
-Derekstrap includes a `debounce()` helper function, used by the Breakpoints module. The code was borrowed from here: [https://davidwalsh.name/javascript-debounce-function](https://davidwalsh.name/javascript-debounce-function). Debouncing is a handy way to ensure a function that runs on resize, scroll, mouse movement or any other event which might occur many times in a row only runs after the action stops.
-
-#### Example usage
-
-```
-import { debounce } from '@evanshunt/derekstrap';
-
-var myResizeFunction = debounce(function() {
-	// do something here that you want to happen on
-    // resize, but not so often that it crashes the browser
-}, 250);
-
-window.addEventListener('resize', myResizeFunction);
-```
-
-See [src/Breakpoints.js](src/Breakpoints.js) for another example.
-
-### Proportional Box
-
-The proportional box module is intended to allow you to define an aspect ratio for an element. Often useful for elements which have a background image. The module consists of 3 mixins, two of which are helper methods for `proportional-box()` which is the one you will most likely use in your project.
-
-The method takes 3 arguments. All arguments except `$aspect-ratio` are optional and will depend on other styles applied to the element in order to function properly. By default the mixin assumes a full-bleed element. The opional arguments are there to configure an element that is not full bleed.
-
-All arguments will accept a single value or a breakpoint map. If passing a breakpoint map to more than one argument ensure all breakpoint maps include the exact same breakpoints.
-
-* `$aspect-ratio`: Width / height, probably best written as an expression which evaluates to a number, e.g. `16 / 9` rather than `1.77777`. (required)
-* `$view-width`: Defaults to `100vw`. This argument should be the proportion of the viewport widht the element (or it's parent) takes up, excluding fixed margins. If the element takes up 100% of the viewport except for a 50px margin on each side, the value here should still be `100vw`. Only pass a different value here if the image is not proportional to the entire viewport. If it should be `50vw` wide (excluding fixed margins) then pass `50vw`. (optional)
-
-The following background image properties are added to the element using this mixin:
-
-```
-background-size: cover;
-background-repeat: no-repeat;
-background-position: center;
-```
-
-<!-- @TODO: add multi-breakpoint examples -->
-#### Example usage
-
-```
-@use '~@evanshunt/derekstrap';
-
-// Gives a full bleed widget element a 3/2 aspect ratio
-.widget {
-    @include derekstrap.proportional-box(3/2);
-    margin: 0;
-    width: 100vw;
-    background-image: url(example.png);
-}
-
-// Gives a small widget that fills 50% of the viewport with a 20px margin on either side a 1/1 apsect ratio.
-.small-widget {
-    @include derekstrap.proportional-box(1/1, 50vw, 20px);
-    margin: 0 20px;
-    width: calc(50vw - 40px);
-    background-image: url(example.png);
-}
-```
-
-### Proportional Text
-
-This module sets the base sizing of text relative to viewport, with resets at each breakpoint defined and configured with the [Breakpoints](#Breakpoints) module. This allows layouts to behave more consistently with fewer odd issues caused by line wrapping. The breakpoint resets ensure the text does not huge on large screens.
-
-In most cases it will be sufficient to import this module in your stylesheets without any additional configuration. It is included by default if you import Derekstrap but to use this module alone you would do the following:
-
-```
-@use '~@evanshunt/derekstrap/proportional-text';
-```
-
-### Responsive Properties
-
-This module provides a mixin to allow setting one or more css properties at multiple breakpoints with a shorthand syntax. 
-
-#### Example usage
-
-For a single CSS property.
-
-```scss
-@use '~@evanshunt/derekstrap';
-
-.colored-text {
-    @include derekstrap.responsive-properties(
-        'color',
-        (
-            'base': darkred,
-            'phone-large': chocolate,
-            'tablet': darkgoldenrod,
-            'desktop': green,
-            'desktop-large': navy,
-            'desktop-extra-large': purple
-        )
-    );
-}
-```
-
-For multiple CSS Properties 
-
-```scss
-@use '~@evanshunt/derekstrap';
-
-h1 {
-    @include derekstrap.responsive-properties(
-        (
-            'font-size',
-            'margin-bottom'
-        ),
-        (
-            'base': (
-                2rem,
-                1rem
-            ),
-            'phone-large': (
-                2.5rem,
-                1rem
-            ),
-            'tablet': (
-                3rem,
-                1rem
-            ),
-            'desktop': (
-                4rem,
-                1.5rem
-            ),
-            'desktop-large': (
-                5rem,
-                2rem
-            ),
-            'desktop-extra-large': (
-                6rem,
-                3rem
-            ),
-        )
-    );
-}
-```
-
-### setUserAgent.js
-
-When Derekstrap is imported and initialized it runs [setUserAgent.js](src/setUserAgent.js) which appends the browser user agent string to a `data-user-agent` attribute `html` element.
-
-```scss
-import { Derekstrap} from '@evanshunt/derekstrap';
-Derekstrap.init();
-```
-
-This will result in markup like the following:
-
-```html
-<html lang="en" data-useragent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Safari/605.1.15">
-```
-
-### Spacing
-
-The spacing module is a set of mixins for defining the whitespace around a block. It is intended to allow consistency across blocks, and for flexibility allows use of `padding`, `margin` or `left`/`right`/`top`/`bottom` attributes to create the whitespace. By default the mixins will apply to both top and bottom or both left and right, and will use the `padding` attribute, but this can be configured with optional arguments.
-
-To standardize spacing across blocks it will be useful to define your own variable map of spacing using the same breakpoint names as used with the [Breakpoints](#Breakpoints) module.
-
-#### Basic example usage
-
-```scss
-@use '~@evanshunt/derekstrap';
-
-$regular-margins: (
-    'base': 2rem,
-    'large-phone': 4rem,
-    'desktop': 10vw,
-    'desktop-large': 12vw,
-    'desktop-extra-large': 16vw
-);
-
-$section-spacing: (
-    'base': 2rem,
-    'desktop': 4rem,
-    'desktop-extra-large': 8rem
-);
-
-.content-block {
-    @include derekstrap.horizontal-spacing($regular-margins);
-    @include derekstrap.vertical-spacing($section-spacing);
-}
-```
-
-#### Applying to only one side
-
-Note that when the spacing is applied to only one side the element, the opposite side gets set to zero. It is not possible at this time to use the mixin to set different spacing on either side of the element using the same attribute. Configuring both sides independently will be possible in version 1.0.
-
-```scss
-.content-block {
-    @include derekstrap.horizontal-spacing($regular-margins, 'left');
-    @include derekstrap.vertical-spacing($section-spacing, 'top');
-}
-```
-
 ### Card Pattern
 
 [See the Demo](https://evanshunt.github.io/derekstrap/#cards).
@@ -448,7 +253,6 @@ The card pattern module includes a mixin to quickly generate a common card layou
     );
 }
 ```
-
 ### debounce.js
 
 Derekstrap includes a `debounce()` helper function, used by the Breakpoints module. The code was borrowed from here: [https://davidwalsh.name/javascript-debounce-function](https://davidwalsh.name/javascript-debounce-function). Debouncing is a handy way to ensure a function that runs on resize, scroll, mouse movement or any other event which might occur many times in a row only runs after the action stops.
@@ -543,6 +347,71 @@ To enable it on a specific selector, use the placholder `%proportional-text`
 .widget {
     @extend %proportional-text;
 }
+```
+
+### Responsive Properties
+
+[See the Demo](https://evanshunt.github.io/derekstrap/#responsive-properties).
+
+This module provides a mixin to allow setting one or more css properties at multiple breakpoints with a shorthand syntax. 		This module sets the base sizing of text relative to viewport, with resets at each breakpoint defined and configured with the [Breakpoints](#Breakpoints) module. This allows layouts to behave more consistently with fewer odd issues caused by line wrapping. The breakpoint resets ensure the text does not huge on large screens.
+#### Example usage		To enable proportional text at the root level, set the config value `$use-root-proportional-text`.
+For a single CSS property.		'''scss
+@use '~@evanshunt/derekstrap' with (
+```scss		    $breakpointList: (
+@use '~@evanshunt/derekstrap';		        $use-root-proportional-text: true
+    )
+.colored-text {		);
+    @include derekstrap.responsive-properties(		'''
+        'color',		
+        (		
+            'base': darkred,		
+            'phone-large': chocolate,		
+            'tablet': darkgoldenrod,		
+            'desktop': green,		
+            'desktop-large': navy,		
+            'desktop-extra-large': purple		
+        )		
+    );		
+}		
+```		
+For multiple CSS Properties 		To enable it on a specific selector, use the placholder `%proportional-text`
+```scss		```scss
+@use '~@evanshunt/derekstrap';		.widget {
+    @extend %proportional-text;
+h1 {		
+    @include derekstrap.responsive-properties(		
+        (		
+            'font-size',		
+            'margin-bottom'		
+        ),		
+        (		
+            'base': (		
+                2rem,		
+                1rem		
+            ),		
+            'phone-large': (		
+                2.5rem,		
+                1rem		
+            ),		
+            'tablet': (		
+                3rem,		
+                1rem		
+            ),		
+            'desktop': (		
+                4rem,		
+                1.5rem		
+            ),		
+            'desktop-large': (		
+                5rem,		
+                2rem		
+            ),		
+            'desktop-extra-large': (		
+                6rem,		
+                3rem		
+            ),		
+        )		
+    );		
+}		}
 ```
 
 ### setUserAgent.js
