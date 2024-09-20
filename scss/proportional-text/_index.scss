@@ -1,4 +1,5 @@
 @forward 'functions';
+@forward 'variables';
 
 @use '../breakpoints/index' as *;
 @use 'functions' as *;
