@@ -353,15 +353,13 @@ To enable it on a specific selector, use the placholder `%proportional-text`
 
 [See the Demo](https://evanshunt.github.io/derekstrap/#responsive-properties).
 
-This module provides a mixin to allow setting one or more css properties at multiple breakpoints with a shorthand syntax. 		This module sets the base sizing of text relative to viewport, with resets at each breakpoint defined and configured with the [Breakpoints](#Breakpoints) module. This allows layouts to behave more consistently with fewer odd issues caused by line wrapping. The breakpoint resets ensure the text does not huge on large screens.
-#### Example usage		To enable proportional text at the root level, set the config value `$use-root-proportional-text`.
-For a single CSS property.		'''scss
-@use '~@evanshunt/derekstrap' with (
-```scss		    $breakpointList: (
-@use '~@evanshunt/derekstrap';		        $use-root-proportional-text: true
-    )
-.colored-text {		);
-    @include derekstrap.responsive-properties(		'''
+This module provides a mixin to allow setting one or more css properties at multiple breakpoints with a shorthand syntax. 
+
+For a single CSS property.	
+
+'''scss
+.colored-text {	
+    @include derekstrap.responsive-properties(		
         'color',		
         (		
             'base': darkred,		
@@ -374,10 +372,11 @@ For a single CSS property.		'''scss
     );		
 }		
 ```		
-For multiple CSS Properties 		To enable it on a specific selector, use the placholder `%proportional-text`
-```scss		```scss
-@use '~@evanshunt/derekstrap';		.widget {
-    @extend %proportional-text;
+For multiple CSS Properties
+
+```scss
+@use '~@evanshunt/derekstrap';		
+
 h1 {		
     @include derekstrap.responsive-properties(		
         (		
